@@ -20336,12 +20336,16 @@
 		  _createClass(React_Boostrap_Carousel, [{
 		    key: 'componentDidUpdate',
 		    value: function componentDidUpdate() {
-		      this._play();
+		      if (this.props.children.length > 0) {
+		        this._play();
+		      }
 		    }
 		  }, {
 		    key: 'componentDidMount',
 		    value: function componentDidMount() {
-		      this._play();
+		      if (this.props.children.length > 0) {
+		        this._play();
+		      }
 		    }
 		  }, {
 		    key: '_waitForNext',
