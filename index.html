@@ -22,12 +22,119 @@
       <h1>
 <a id="react-boostrap-carousel" class="anchor" href="#react-boostrap-carousel" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>react-boostrap-carousel</h1>
 
-<p>react-boostrap-carousel</p>
+<p>A carousel component for react (with bootstrap).
+This project is a react port of: <a href="http://react-bootstrap.github.io/components.html#carousels">react-bootstrap</a></p>
 
 <h2>
 <a id="install" class="anchor" href="#install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install</h2>
 
 <pre><code>npm i --save react-boostrap-carousel
+</code></pre>
+
+<h2>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h2>
+
+<pre><code>import {React_Boostrap_Carousel} from 'react-boostrap-carousel';
+import '../css/bootstrap.min.css';
+import '../css/react-boostrap-carousel.css';
+</code></pre>
+
+<h2>
+<a id="demo" class="anchor" href="#demo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Demo</h2>
+
+<p><a href="http://skycloud1030.github.io/react-boostrap-carousel/example/React_Boostrap_Carousel.html">fade</a></p>
+
+<pre><code>import React from 'react';
+import ReactDOM from 'react-dom';
+import '../css/bootstrap.min.css';
+import '../css/react-boostrap-carousel.css';
+import {React_Boostrap_Carousel} from 'react-boostrap-carousel';
+
+
+class Demo extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+      return(
+        &lt;div style={{height:300,margin:20}}&gt;
+          &lt;React_Boostrap_Carousel animation={true} className="carousel-fade"&gt;
+            &lt;div style={{height:300,width:"100%",backgroundColor:"skyblue"}}&gt;
+              123
+            &lt;/div&gt;
+            &lt;div style={{height:300,width:"100%",backgroundColor:"aqua"}}&gt;
+              456
+            &lt;/div&gt;
+            &lt;div style={{height:300,width:"100%",backgroundColor:"lightpink"}}&gt;
+              789
+            &lt;/div&gt;
+          &lt;/React_Boostrap_Carousel&gt;
+        &lt;/div&gt;
+      )
+    }
+};
+ReactDOM.render(
+    &lt;Demo/&gt;,
+    document.getElementById('Demo')
+);
+</code></pre>
+
+<h2>
+<a id="classname" class="anchor" href="#classname" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>className</h2>
+
+<pre><code>Type:string
+Default:""
+</code></pre>
+
+<h2>
+<a id="defaultactiveindex" class="anchor" href="#defaultactiveindex" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>defaultActiveIndex</h2>
+
+<pre><code>Type:number
+Default:0
+</code></pre>
+
+<h2>
+<a id="slideshowspeed" class="anchor" href="#slideshowspeed" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>slideshowSpeed</h2>
+
+<pre><code>Type:number
+Default:7000
+</code></pre>
+
+<h2>
+<a id="animation" class="anchor" href="#animation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>animation</h2>
+
+<pre><code>Type:boolean
+Default:true
+</code></pre>
+
+<h2>
+<a id="wrap" class="anchor" href="#wrap" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>wrap</h2>
+
+<pre><code>Type:boolean
+Default:true
+</code></pre>
+
+<h2>
+<a id="indicators" class="anchor" href="#indicators" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>indicators</h2>
+
+<pre><code>Type:boolean
+Default:true
+</code></pre>
+
+<h2>
+<a id="leftimage" class="anchor" href="#leftimage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>leftImage</h2>
+
+<pre><code>Type:string
+Default:
+Description: the image src
+</code></pre>
+
+<h2>
+<a id="rightimage" class="anchor" href="#rightimage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>rightImage</h2>
+
+<pre><code>Type:string
+Default:
+Description: the image src
 </code></pre>
 
       <footer class="site-footer">
