@@ -1,9 +1,9 @@
 {
-  "name": "react-boostrap-carousel-demo",
+  "name": "react-bootstrap-carousel-demo",
   "version": "1.0.0",
-  "description": "react-boostrap-carousel-demo",
+  "description": "react-bootstrap-carousel-demo",
   "license": "MIT",
-  "main": "dist/react-boostrap-carousel.js",
+  "main": "dist/react-bootstrap-carousel.js",
   "keywords": [
     "react",
     "boostrap",
@@ -12,7 +12,7 @@
   "author": "skycloud1030",
   "repository": {
     "type": "git",
-    "url": "https://github.com/skycloud1030/react-boostrap-carousel"
+    "url": "https://github.com/skycloud1030/react-bootstrap-carousel"
   },
   "scripts": {
     "start": "webpack --progress --colors --watch",
