@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "react": "^0.14.2",
-    "react-boostrap-carousel": "^2.0.1",
+    "react-boostrap-carousel": "^2.0.2",
     "react-dom": "^0.14.2"
   },
   "devDependencies": {

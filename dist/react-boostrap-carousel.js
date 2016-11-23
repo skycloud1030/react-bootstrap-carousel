@@ -20337,6 +20337,7 @@
 		    key: 'componentDidUpdate',
 		    value: function componentDidUpdate() {
 		      if (this.props.children.length > 0) {
+		        this._pause();
 		        this._play();
 		      }
 		    }
@@ -20344,6 +20345,7 @@
 		    key: 'componentDidMount',
 		    value: function componentDidMount() {
 		      if (this.props.children.length > 0) {
+		        this._pause();
 		        this._play();
 		      }
 		    }
