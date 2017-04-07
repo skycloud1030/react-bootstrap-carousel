@@ -7,6 +7,7 @@ export class React_Carousel_Indicators extends React.Component{
   static defaultProps={
     data:[],
     activeIndex:0,
+    indClick:()=>{}
   }
   constructor(props){
     super(props);
@@ -14,10 +15,16 @@ export class React_Carousel_Indicators extends React.Component{
       css:"carousel-indicators",
     }
   }
-  _onClick=(index)=>{
-    if(typeof this.props.indClick=="function"){
-      this.props.indClick(index);
+  _onClick= (index)=>{
+    let {activeIndex}=this.props;
+    let direction="";
+    if(activeIndex<index){
+      direction="next";
     }
+    else{
+      direction = "prev";
+    }
+    this.props.indClick(index,direction);
   }
   render(){
     let {data,activeIndex}=this.props;

@@ -1,6 +1,6 @@
 {
   "name": "react-bootstrap-carousel",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "react-bootstrap-carousel",
   "license": "MIT",
   "main": "dist/react-bootstrap-carousel.js",
@@ -22,7 +22,8 @@
   "dependencies": {
     "classnames": "^2.2.1",
     "react": "^15.4.0",
-    "react-dom": "^15.4.0"
+    "react-dom": "^15.4.0",
+    "shallowequal": "^0.2.2"
   },
   "devDependencies": {
     "react-loader": "^2.0.0",

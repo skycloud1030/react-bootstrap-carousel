@@ -1,11 +1,10 @@
-/* React_Boostrap_Carousel.jsx*/
+/* React_Bootstrap_Carousel.jsx*/
 import React from 'react';
-import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import {React_Carousel_Indicators} from './React_Carousel_Indicators.jsx';
 import {React_Carousel_Controls} from './React_Carousel_Controls.jsx';
 import {React_Carousel_Item} from './React_Carousel_Item.jsx';
-
+import shallowequal from 'shallowequal';
 export class React_Bootstrap_Carousel extends React.Component {
   static defaultProps={
     indicators:true,
@@ -16,7 +15,7 @@ export class React_Bootstrap_Carousel extends React.Component {
     children:[],
     animation:true,
     className:"",
-
+    onSelect:()=>{}
   };
   constructor(props) {
     super(props);
@@ -26,10 +25,14 @@ export class React_Bootstrap_Carousel extends React.Component {
       animation:this.props.animation,
     }
   }
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     if(this.props.children.length>0){
       this._pause();
       this._play();
+    }
+    if(!shallowequal(prevState.activeIndex,this.state.activeIndex)){
+      let {direction,activeIndex}=this.state;
+      this.props.onSelect(activeIndex,direction);
     }
   }
   componentDidMount(){
@@ -50,7 +53,7 @@ export class React_Bootstrap_Carousel extends React.Component {
       }
       index = 0;
     }
-    this.setState({activeIndex:index});
+    this.setState({activeIndex:index,direction:"next"});
   }
   _prev=()=>{
     let {activeIndex}=this.state;
@@ -64,7 +67,7 @@ export class React_Bootstrap_Carousel extends React.Component {
       }
       index = count - 1;
     }
-    this.setState({activeIndex:index});
+    this.setState({activeIndex:index,direction:"prev"});
   }
   _handleMouseOver=()=>{
     this._pause();
@@ -87,10 +90,10 @@ export class React_Bootstrap_Carousel extends React.Component {
     this.isPaused = false;
     this._waitForNext();
   }
-  _indClick=(index)=>{
+  _indClick= (index,direction)=>{
     clearTimeout(this.timeout);
     let {activeIndex}=this.state;
-    this.setState({activeIndex:index});
+    this.setState({activeIndex:index,direction});
     this.isPaused = false;
   }
   _controlsClick=(call)=>{
@@ -105,14 +108,14 @@ export class React_Bootstrap_Carousel extends React.Component {
   }
   render(){
     let {children,indicators,controls,slideshowSpeed,leftImage,rightImage}=this.props;
-    let {activeIndex,direction,className,animation}=this.state;
+    let {activeIndex,className,animation}=this.state;
     return(
       <div className={classNames(className)}
         onMouseOver={this._handleMouseOver}
         onMouseOut={this._handleMouseOut}
       >
         {this.props.indicators?<React_Carousel_Indicators data={children} activeIndex={activeIndex} indClick={this._indClick}/>:null}
-        <React_Carousel_Item animation={animation} direction={direction} data={children} activeIndex={activeIndex}/>
+        <React_Carousel_Item animation={animation} data={children} activeIndex={activeIndex}/>
         {this.props.controls?<React_Carousel_Controls dataLength={children.length} leftImage={leftImage} rightImage={rightImage} prev={this._prev} next={this._next} controlsClick={this._controlsClick}/>:null}
       </div>
     )
