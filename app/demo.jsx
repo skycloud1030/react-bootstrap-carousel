@@ -1,17 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import '../css/bootstrap.min.css';
-import '../css/react-boostrap-carousel.css';
-import {React_Boostrap_Carousel} from 'react-boostrap-carousel';
+import 'react-bootstrap-carousel/dist/bootstrap.min.css';
+import 'react-bootstrap-carousel/dist/react-bootstrap-carousel.css';
+import {React_Bootstrap_Carousel} from 'react-bootstrap-carousel';
 
 class Demo extends React.Component {
     constructor(props) {
         super(props);
     }
+    onSelect= (active,direction)=>{
+        console.log(`active=${active} && direction=${direction}`);
+    }
     render() {
       return(
         <div style={{height:300,margin:20}}>
-          <React_Boostrap_Carousel animation={true} className="carousel-fade">
+          <React_Bootstrap_Carousel
+            animation={true}
+            onSelect={this.onSelect}
+            className="carousel-fade"
+          >
             <div style={{height:300,width:"100%",backgroundColor:"skyblue"}}>
               123
             </div>
@@ -21,7 +28,7 @@ class Demo extends React.Component {
             <div style={{height:300,width:"100%",backgroundColor:"lightpink"}}>
               789
             </div>
-          </React_Boostrap_Carousel>
+          </React_Bootstrap_Carousel>
         </div>
       )
     }

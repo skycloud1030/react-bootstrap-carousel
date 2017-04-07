@@ -20,9 +20,9 @@
     "min": "webpack --min"
   },
   "dependencies": {
-    "react": "^0.14.2",
-    "react-boostrap-carousel": "^2.0.2",
-    "react-dom": "^0.14.2"
+    "react": "^0.14.8",
+    "react-bootstrap-carousel": "^1.0.4",
+    "react-dom": "^0.14.8"
   },
   "devDependencies": {
     "react-loader": "^2.0.0",
