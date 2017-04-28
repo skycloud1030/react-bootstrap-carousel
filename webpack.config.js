@@ -18,7 +18,7 @@ var config = {
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: '[name].js',
-      library: "react-bootstrap-carousel",
+      library: "ReactBootstrap_Carousel",
       libraryTarget: 'umd',
       umdNamedDefine: true
     },
@@ -35,20 +35,10 @@ var config = {
             exclude: /(node_modules|bower_components)/,
             loader: 'babel-loader',
             query: {
+              cacheDirectory:true,
               presets: ['es2015', 'stage-0', 'react'],
             }
           },
-          {
-            test: /\.css$/,
-            exclude: /(node_modules|bower_components)/,
-            loader: "style-loader!css-loader"
-          },
-          { test: /\.less$/, loader: "style-loader!css-loader!less-loader" },
-          { test: /\.(png|jpg|gif)$/,loader: 'url-loader?name=[path][name].[ext]&limit=50000'}, // inline base64 URLs for <=8k images, direct URLs for the rest
-          { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader?name=[path][name].[ext]" },
-          { test: /\.woff(2)?(\?v=[0-9].[0-9].[0-9])?$/, loader: "url-loader?mimetype=application/font-woff" },
-          { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url-loader?name=[path][name].[ext]&limit=50000&mimetype=application/octet-stream" },
-          { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url-loader?name=[path][name].[ext]&limit=50000&mimetype=image/svg+xml" }
         ]
     }
 };
