@@ -99,15 +99,11 @@ Type:function
 Description: callback when active change
 
 ```
-## leftImage
+## leftIcon
 ```
-Type:string
-Default:
-Description: the image src
+Type:node
 ```
-## rightImage
+## rightIcon
 ```
-Type:string
-Default:
-Description: the image src
+Type:node
 ```

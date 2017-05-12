@@ -107,7 +107,7 @@ export class React_Bootstrap_Carousel extends React.Component {
     }
   }
   render(){
-    let {children,indicators,controls,slideshowSpeed,leftImage,rightImage}=this.props;
+    let {children,indicators,controls,slideshowSpeed,leftIcon,rightIcon}=this.props;
     let {activeIndex,className,animation}=this.state;
     return(
       <div className={classNames(className)}
@@ -116,7 +116,7 @@ export class React_Bootstrap_Carousel extends React.Component {
       >
         {this.props.indicators?<React_Carousel_Indicators data={children} activeIndex={activeIndex} indClick={this._indClick}/>:null}
         <React_Carousel_Item animation={animation} data={children} activeIndex={activeIndex}/>
-        {this.props.controls?<React_Carousel_Controls dataLength={children.length} leftImage={leftImage} rightImage={rightImage} prev={this._prev} next={this._next} controlsClick={this._controlsClick}/>:null}
+        {this.props.controls?<React_Carousel_Controls dataLength={children.length} leftIcon={leftIcon} rightIcon={rightIcon} prev={this._prev} next={this._next} controlsClick={this._controlsClick}/>:null}
       </div>
     )
   }

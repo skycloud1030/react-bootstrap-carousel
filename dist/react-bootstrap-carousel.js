@@ -310,8 +310,8 @@ var React_Bootstrap_Carousel = exports.React_Bootstrap_Carousel = function (_Rea
           indicators = _props.indicators,
           controls = _props.controls,
           slideshowSpeed = _props.slideshowSpeed,
-          leftImage = _props.leftImage,
-          rightImage = _props.rightImage;
+          leftIcon = _props.leftIcon,
+          rightIcon = _props.rightIcon;
       var _state2 = this.state,
           activeIndex = _state2.activeIndex,
           className = _state2.className,
@@ -325,7 +325,7 @@ var React_Bootstrap_Carousel = exports.React_Bootstrap_Carousel = function (_Rea
         },
         this.props.indicators ? _react2.default.createElement(_React_Carousel_Indicators.React_Carousel_Indicators, { data: children, activeIndex: activeIndex, indClick: this._indClick }) : null,
         _react2.default.createElement(_React_Carousel_Item.React_Carousel_Item, { animation: animation, data: children, activeIndex: activeIndex }),
-        this.props.controls ? _react2.default.createElement(_React_Carousel_Controls.React_Carousel_Controls, { dataLength: children.length, leftImage: leftImage, rightImage: rightImage, prev: this._prev, next: this._next, controlsClick: this._controlsClick }) : null
+        this.props.controls ? _react2.default.createElement(_React_Carousel_Controls.React_Carousel_Controls, { dataLength: children.length, leftIcon: leftIcon, rightIcon: rightIcon, prev: this._prev, next: this._next, controlsClick: this._controlsClick }) : null
       );
     }
   }]);
@@ -390,9 +390,7 @@ var React_Carousel_Controls = exports.React_Carousel_Controls = function (_React
     var _this = _possibleConstructorReturn(this, (React_Carousel_Controls.__proto__ || Object.getPrototypeOf(React_Carousel_Controls)).call(this, props));
 
     _this._onclick = function (call) {
-      if (typeof _this.props.controlsClick == "function") {
-        _this.props.controlsClick(call);
-      }
+      _this.props.controlsClick(call);
     };
 
     _this.state = {
@@ -406,8 +404,8 @@ var React_Carousel_Controls = exports.React_Carousel_Controls = function (_React
     key: 'render',
     value: function render() {
       var _props = this.props,
-          rightImage = _props.rightImage,
-          leftImage = _props.leftImage,
+          rightIcon = _props.rightIcon,
+          leftIcon = _props.leftIcon,
           dataLength = _props.dataLength;
 
       if (dataLength < 2) {
@@ -419,12 +417,12 @@ var React_Carousel_Controls = exports.React_Carousel_Controls = function (_React
         _react2.default.createElement(
           'a',
           { className: this.state.leftCss, onClick: this._onclick.bind(this, "prev") },
-          _react2.default.createElement(React_FlexSlider_Icon_Left, { image: leftImage })
+          _react2.default.createElement(React_FlexSlider_Icon_Left, { icon: leftIcon })
         ),
         _react2.default.createElement(
           'a',
           { className: this.state.rightCss, onClick: this._onclick.bind(this, "next") },
-          _react2.default.createElement(React_FlexSlider_Icon_Right, { image: rightImage })
+          _react2.default.createElement(React_FlexSlider_Icon_Right, { icon: rightIcon })
         )
       );
     }
@@ -434,7 +432,8 @@ var React_Carousel_Controls = exports.React_Carousel_Controls = function (_React
 }(_react2.default.Component);
 
 React_Carousel_Controls.defaultProps = {
-  dataLength: 0
+  dataLength: 0,
+  controlsClick: function controlsClick() {}
 };
 ;
 
@@ -451,21 +450,24 @@ var React_FlexSlider_Icon_Right = exports.React_FlexSlider_Icon_Right = function
     key: 'render',
     value: function render() {
       var _props2 = this.props,
-          image = _props2.image,
+          icon = _props2.icon,
           style = _props2.style,
           css = _props2.css;
 
-      if (image) {
-        return _react2.default.createElement('img', { className: 'rightControl', src: image });
-      } else {
-        return _react2.default.createElement('span', { className: 'glyphicon glyphicon-chevron-right' });
-      }
+      return _react2.default.createElement(
+        'span',
+        { className: 'rightControl' },
+        icon
+      );
     }
   }]);
 
   return React_FlexSlider_Icon_Right;
 }(_react2.default.Component);
 
+React_FlexSlider_Icon_Right.defaultProps = {
+  icon: _react2.default.createElement('span', { className: 'glyphicon glyphicon-chevron-right' })
+};
 ;
 
 var React_FlexSlider_Icon_Left = exports.React_FlexSlider_Icon_Left = function (_React$Component3) {
@@ -481,22 +483,25 @@ var React_FlexSlider_Icon_Left = exports.React_FlexSlider_Icon_Left = function (
     key: 'render',
     value: function render() {
       var _props3 = this.props,
-          image = _props3.image,
+          icon = _props3.icon,
           style = _props3.style,
           css = _props3.css;
 
 
-      if (image) {
-        return _react2.default.createElement('img', { className: 'leftControl', src: image });
-      } else {
-        return _react2.default.createElement('span', { className: 'glyphicon glyphicon-chevron-left' });
-      }
+      return _react2.default.createElement(
+        'span',
+        { className: 'leftControl' },
+        icon
+      );
     }
   }]);
 
   return React_FlexSlider_Icon_Left;
 }(_react2.default.Component);
 
+React_FlexSlider_Icon_Left.defaultProps = {
+  icon: _react2.default.createElement('span', { className: 'glyphicon glyphicon-chevron-left' })
+};
 ;
 
 /***/ }),
