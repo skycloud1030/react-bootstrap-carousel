@@ -23,7 +23,9 @@ class Demo extends React.Component {
               123
             </div>
             <div style={{height:300,width:"100%",backgroundColor:"aqua"}}>
-              456
+              <video style={{width:"80%",height:250,margin:"0 auto",display:"block"}} controls>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"/>
+              </video>
             </div>
             <div style={{height:300,width:"100%",backgroundColor:"lightpink"}}>
               789
