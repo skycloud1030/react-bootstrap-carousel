@@ -8,9 +8,6 @@ if(min){
   plugins.push(new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } }));
 }
 
-
-
-
 var config = {
     entry: {
       "react-bootstrap-carousel":path.resolve(__dirname, 'index.js'),
@@ -36,7 +33,7 @@ var config = {
             loader: 'babel-loader',
             query: {
               cacheDirectory:true,
-              presets: ['es2015', 'stage-0', 'react'],
+              presets: ['env', 'stage-0', 'react'],
             }
           },
         ]

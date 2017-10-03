@@ -37,37 +37,44 @@ export class React_Carousel_Controls extends React.Component{
 };
 
 export class React_FlexSlider_Icon_Right extends React.Component{
-  static defaultProps={
-    icon: <span className="glyphicon glyphicon-chevron-right"></span>
-  }
   constructor(props){
     super(props);
   }
   render(){
     let {icon,style,css}=this.props;
-    return(
-      <span className="rightControl">
-        {icon}
-      </span>
-    );
+    if(this.props.icon){
+      return(
+        <span className="rightControl">
+          {icon}
+        </span>
+      );
+    }
+    else{
+      return(
+        <span className="glyphicon glyphicon-chevron-right"></span>
+      );
+    }
+
   }
 };
 
 export class React_FlexSlider_Icon_Left extends React.Component{
-  static defaultProps={
-    icon: <span className="glyphicon glyphicon-chevron-left"></span>
-  }
   constructor(props){
     super(props);
   }
   render(){
     let {icon,style,css}=this.props;
-
-    return(
-      <span className="leftControl">
-        {icon}
-      </span>
-    );
-
+    if(this.props.icon){
+      return(
+        <span className="leftControl">
+          {icon}
+        </span>
+      );
+    }
+    else{
+      return(
+        <span className="glyphicon glyphicon-chevron-left"></span>
+      );
+    }
   }
 };

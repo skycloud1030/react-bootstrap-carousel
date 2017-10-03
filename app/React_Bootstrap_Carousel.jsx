@@ -1,10 +1,10 @@
-/* React_Bootstrap_Carousel.jsx*/
 import React from 'react';
 import classNames from 'classnames';
 import {React_Carousel_Indicators} from './React_Carousel_Indicators.jsx';
 import {React_Carousel_Controls} from './React_Carousel_Controls.jsx';
 import {React_Carousel_Item} from './React_Carousel_Item.jsx';
 import shallowequal from 'shallowequal';
+/* React_Bootstrap_Carousel.jsx*/
 export class React_Bootstrap_Carousel extends React.Component {
   static defaultProps={
     indicators:true,
@@ -106,17 +106,34 @@ export class React_Bootstrap_Carousel extends React.Component {
       this._next();
     }
   }
+  render_ind=()=>{
+    let {children,indicators}=this.props;
+    let {activeIndex}=this.state;
+    if(indicators){
+      return(
+        <React_Carousel_Indicators data={children} activeIndex={activeIndex} indClick={this._indClick}/>
+      );
+    }
+  }
+  render_control=()=>{
+    let {children,controls,leftIcon,rightIcon}=this.props;
+    if(controls){
+      return(
+        <React_Carousel_Controls dataLength={children.length} leftIcon={leftIcon} rightIcon={rightIcon} prev={this._prev} next={this._next} controlsClick={this._controlsClick}/>
+      );
+    }
+  }
   render(){
-    let {children,indicators,controls,slideshowSpeed,leftIcon,rightIcon}=this.props;
+    let {children}=this.props;
     let {activeIndex,className,animation}=this.state;
     return(
       <div className={classNames(className)}
         onMouseOver={this._handleMouseOver}
         onMouseOut={this._handleMouseOut}
       >
-        {this.props.indicators?<React_Carousel_Indicators data={children} activeIndex={activeIndex} indClick={this._indClick}/>:null}
+        {this.render_ind()}
         <React_Carousel_Item animation={animation} data={children} activeIndex={activeIndex}/>
-        {this.props.controls?<React_Carousel_Controls dataLength={children.length} leftIcon={leftIcon} rightIcon={rightIcon} prev={this._prev} next={this._next} controlsClick={this._controlsClick}/>:null}
+        {this.render_control()}
       </div>
     )
   }
