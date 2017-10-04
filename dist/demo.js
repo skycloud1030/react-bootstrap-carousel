@@ -1539,7 +1539,7 @@ var Demo = function (_React$Component) {
               _reactBootstrapCarousel.React_Bootstrap_Carousel,
               {
                 animation: true,
-                slideshowSpeed: 10000000,
+                slideshowSpeed: 7000,
                 leftIcon: leftIcon,
                 rightIcon: rightIcon,
                 onSelect: this.onSelect,
