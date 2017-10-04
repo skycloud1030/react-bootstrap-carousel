@@ -63,7 +63,7 @@ class Demo extends React.Component {
             <div className="col-md-12">
               <React_Bootstrap_Carousel
                 animation={true}
-                slideshowSpeed={10000000}
+                slideshowSpeed={7000}
                 leftIcon={leftIcon}
                 rightIcon={rightIcon}
                 onSelect={this.onSelect}
