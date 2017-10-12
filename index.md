@@ -1,26 +1,31 @@
 # react-bootstrap-carousel
-A carousel component for react (with bootstrap).
-This project is a react port of: [react-bootstrap](http://react-bootstrap.github.io/components.html#carousels)
+
+A carousel component for react (with bootstrap). This project is a react port of: [react-bootstrap](http://react-bootstrap.github.io/components.html#carousels)
 
 ## Install
+
 ```
 npm i --save react-bootstrap-carousel
 ```
 
 ## Getting Started
+
 ```
 import {React_Bootstrap_Carousel} from 'react-bootstrap-carousel';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'react-bootstrap-carousel/dist/react-bootstrap-carousel.css';
 ```
+
 ## Demo
+
 [fade](https://skycloud1030.github.io/react-bootstrap-carousel/example/fade.html)
+
 ```
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {React_Bootstrap_Carousel} from 'react-bootstrap-carousel';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'react-bootstrap-carousel/dist/react-bootstrap-carousel.css';
+import {React_Bootstrap_Carousel} from 'react-bootstrap-carousel';
 
 class Demo extends React.Component {
     constructor(props) {
@@ -29,6 +34,15 @@ class Demo extends React.Component {
     }
     onSelect= (active,direction)=>{
         console.log(`active=${active} && direction=${direction}`);
+    }
+    slideNext=()=>{
+      this.slider.slideNext();
+    }
+    slidePrev=()=>{
+      this.slider.slidePrev();
+    }
+    goToSlide=()=>{
+      this.slider.goToSlide(4);
     }
     _changeIcon=()=>{
       let {leftIcon,rightIcon}=this.state;
@@ -54,14 +68,24 @@ class Demo extends React.Component {
               <button type="button" className="btn btn-default" onClick={this._changeIcon}>
                 Change Icon
               </button>
+              <button type="button" className="btn btn-default" onClick={this.slidePrev}>
+                Slider prev
+              </button>
+              <button type="button" className="btn btn-default" onClick={this.slideNext}>
+                Slider next
+              </button>
+              <button type="button" className="btn btn-default" onClick={this.goToSlide}>
+                Go to slide 4
+              </button>
             </div>
             <div className="col-md-12">
               <React_Bootstrap_Carousel
                 animation={true}
-                slideshowSpeed={10000000}
+                slideshowSpeed={7000}
                 leftIcon={leftIcon}
                 rightIcon={rightIcon}
                 onSelect={this.onSelect}
+                ref={r=>this.slider=r}
                 className="carousel-fade"
               >
                 <div style={{height:400}}>
@@ -124,8 +148,6 @@ ReactDOM.render(
 );
 ```
 
-
-
 ## className
 
 ```
@@ -166,6 +188,26 @@ Default:true
 ```
 Type:boolean
 Default:true
+```
+
+## slidePrev
+
+```
+Type:function
+slidePrev=()=>{this.slider.slidePrev();}
+```
+
+## slideNext
+
+```
+Type:function
+slideNext=()=>{this.slider.slideNext();}
+```
+
+## goToSlide
+
+```
+goToSlide=()=>{this.slider.goToSlide(2);}
 ```
 
 ## onSelect

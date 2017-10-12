@@ -12,6 +12,15 @@ class Demo extends React.Component {
     onSelect= (active,direction)=>{
         console.log(`active=${active} && direction=${direction}`);
     }
+    slideNext=()=>{
+      this.slider.slideNext();
+    }
+    slidePrev=()=>{
+      this.slider.slidePrev();
+    }
+    goToSlide=()=>{
+      this.slider.goToSlide(4);
+    }
     _changeIcon=()=>{
       let {leftIcon,rightIcon}=this.state;
       if(leftIcon && rightIcon){
@@ -36,6 +45,15 @@ class Demo extends React.Component {
               <button type="button" className="btn btn-default" onClick={this._changeIcon}>
                 Change Icon
               </button>
+              <button type="button" className="btn btn-default" onClick={this.slidePrev}>
+                Slider prev
+              </button>
+              <button type="button" className="btn btn-default" onClick={this.slideNext}>
+                Slider next
+              </button>
+              <button type="button" className="btn btn-default" onClick={this.goToSlide}>
+                Go to slide 4
+              </button>
             </div>
             <div className="col-md-12">
               <React_Bootstrap_Carousel
@@ -44,6 +62,7 @@ class Demo extends React.Component {
                 leftIcon={leftIcon}
                 rightIcon={rightIcon}
                 onSelect={this.onSelect}
+                ref={r=>this.slider=r}
                 className="carousel-fade"
               >
                 <div style={{height:400}}>

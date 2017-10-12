@@ -6,7 +6,7 @@
   "main": "dist/react-bootstrap-carousel.js",
   "keywords": [
     "react",
-    "boostrap",
+    "bootstrap",
     "carousel"
   ],
   "author": "skycloud1030",
@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "react": "^16.0.0",
-    "react-bootstrap-carousel": "^2.0.0",
+    "react-bootstrap-carousel": "^2.1.0",
     "react-dom": "^16.0.0"
   },
   "devDependencies": {
