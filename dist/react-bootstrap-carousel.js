@@ -209,7 +209,7 @@ var React_Bootstrap_Carousel = exports.React_Bootstrap_Carousel = function (_Rea
 
     var _this = _possibleConstructorReturn(this, (React_Bootstrap_Carousel.__proto__ || Object.getPrototypeOf(React_Bootstrap_Carousel)).call(this, props));
 
-    _this._next = function () {
+    _this.slideNext = function () {
       var activeIndex = _this.state.activeIndex;
 
       var prevIndex = activeIndex;
@@ -226,7 +226,12 @@ var React_Bootstrap_Carousel = exports.React_Bootstrap_Carousel = function (_Rea
       _this.setState({ activeIndex: index, direction: "next" });
     };
 
-    _this._prev = function () {
+    _this.goToSlide = function (activeIndex) {
+      clearTimeout(_this.timeout);
+      _this.setState({ activeIndex: activeIndex });
+    };
+
+    _this.slidePrev = function () {
       var activeIndex = _this.state.activeIndex;
 
       var prevIndex = activeIndex;
@@ -275,9 +280,9 @@ var React_Bootstrap_Carousel = exports.React_Bootstrap_Carousel = function (_Rea
       clearTimeout(_this.timeout);
       _this.isPaused = false;
       if (call == "prev") {
-        _this._prev();
+        _this.slidePrev();
       } else {
-        _this._next();
+        _this.slideNext();
       }
     };
 
@@ -300,7 +305,7 @@ var React_Bootstrap_Carousel = exports.React_Bootstrap_Carousel = function (_Rea
           rightIcon = _this$props2.rightIcon;
 
       if (controls) {
-        return _react2.default.createElement(_React_Carousel_Controls.React_Carousel_Controls, { dataLength: children.length, leftIcon: leftIcon, rightIcon: rightIcon, prev: _this._prev, next: _this._next, controlsClick: _this._controlsClick });
+        return _react2.default.createElement(_React_Carousel_Controls.React_Carousel_Controls, { dataLength: children.length, leftIcon: leftIcon, rightIcon: rightIcon, prev: _this.slidePrev, next: _this.slideNext, controlsClick: _this._controlsClick });
       }
     };
 
@@ -339,7 +344,7 @@ var React_Bootstrap_Carousel = exports.React_Bootstrap_Carousel = function (_Rea
     key: '_waitForNext',
     value: function _waitForNext() {
       if (!this.isPaused && this.props.activeIndex == null) {
-        this.timeout = setTimeout(this._next, this.props.slideshowSpeed);
+        this.timeout = setTimeout(this.slideNext, this.props.slideshowSpeed);
       }
     }
   }, {

@@ -41,7 +41,7 @@ export class React_Bootstrap_Carousel extends React.Component {
       this._play();
     }
   }
-  _next=()=>{
+  slideNext=()=>{
     let {activeIndex}=this.state;
     let prevIndex=activeIndex;
     let {wrap}=this.props;
@@ -55,7 +55,11 @@ export class React_Bootstrap_Carousel extends React.Component {
     }
     this.setState({activeIndex:index,direction:"next"});
   }
-  _prev=()=>{
+  goToSlide=(activeIndex)=>{
+    clearTimeout(this.timeout);
+    this.setState({activeIndex});
+  }
+  slidePrev=()=>{
     let {activeIndex}=this.state;
     let prevIndex=activeIndex;
     let {wrap}=this.props;
@@ -83,7 +87,7 @@ export class React_Bootstrap_Carousel extends React.Component {
   }
   _waitForNext() {
     if (!this.isPaused && this.props.activeIndex == null) {
-      this.timeout = setTimeout(this._next, this.props.slideshowSpeed);
+      this.timeout = setTimeout(this.slideNext, this.props.slideshowSpeed);
     }
   }
   _play=()=>{
@@ -100,10 +104,10 @@ export class React_Bootstrap_Carousel extends React.Component {
     clearTimeout(this.timeout);
     this.isPaused = false;
     if(call=="prev"){
-      this._prev();
+      this.slidePrev();
     }
     else{
-      this._next();
+      this.slideNext();
     }
   }
   render_ind=()=>{
@@ -119,7 +123,7 @@ export class React_Bootstrap_Carousel extends React.Component {
     let {children,controls,leftIcon,rightIcon}=this.props;
     if(controls){
       return(
-        <React_Carousel_Controls dataLength={children.length} leftIcon={leftIcon} rightIcon={rightIcon} prev={this._prev} next={this._next} controlsClick={this._controlsClick}/>
+        <React_Carousel_Controls dataLength={children.length} leftIcon={leftIcon} rightIcon={rightIcon} prev={this.slidePrev} next={this.slideNext} controlsClick={this._controlsClick}/>
       );
     }
   }
