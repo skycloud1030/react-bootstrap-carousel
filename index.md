@@ -176,6 +176,13 @@ Type:boolean
 Default:true
 ```
 
+## autoplay
+
+```
+Type:boolean
+Default:true
+```
+
 ## wrap
 
 ```

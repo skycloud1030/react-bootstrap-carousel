@@ -7,7 +7,9 @@ import {React_Bootstrap_Carousel} from 'react-bootstrap-carousel';
 class Demo extends React.Component {
     constructor(props) {
         super(props);
-        this.state={}
+        this.state={
+          autoplay:true
+        }
     }
     onSelect= (active,direction)=>{
         console.log(`active=${active} && direction=${direction}`);
@@ -20,6 +22,9 @@ class Demo extends React.Component {
     }
     goToSlide=()=>{
       this.slider.goToSlide(4);
+    }
+    autoplay=()=>{
+      this.setState({autoplay:!this.state.autoplay});
     }
     _changeIcon=()=>{
       let {leftIcon,rightIcon}=this.state;
@@ -54,10 +59,14 @@ class Demo extends React.Component {
               <button type="button" className="btn btn-default" onClick={this.goToSlide}>
                 Go to slide 4
               </button>
+              <button type="button" className="btn btn-default" onClick={this.autoplay}>
+                Autoplay
+              </button>
             </div>
             <div className="col-md-12">
               <React_Bootstrap_Carousel
                 animation={true}
+                autoplay={this.state.autoplay}
                 slideshowSpeed={7000}
                 leftIcon={leftIcon}
                 rightIcon={rightIcon}
