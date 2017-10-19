@@ -4,6 +4,7 @@ import {React_Carousel_Indicators} from './React_Carousel_Indicators.jsx';
 import {React_Carousel_Controls} from './React_Carousel_Controls.jsx';
 import {React_Carousel_Item} from './React_Carousel_Item.jsx';
 import shallowequal from 'shallowequal';
+
 /* React_Bootstrap_Carousel.jsx*/
 export class React_Bootstrap_Carousel extends React.Component {
   static defaultProps={
@@ -12,6 +13,7 @@ export class React_Bootstrap_Carousel extends React.Component {
     slideshowSpeed:7000,
     defaultActiveIndex:0,
     wrap: true,
+    autoplay:true,
     children:[],
     animation:true,
     className:"",
@@ -27,8 +29,10 @@ export class React_Bootstrap_Carousel extends React.Component {
   }
   componentDidUpdate(prevProps, prevState) {
     if(this.props.children.length>0){
-      this._pause();
-      this._play();
+      this._autoPlay();
+    }
+    if(!shallowequal(prevProps.autoplay,this.props.autoplay)){
+      this._autoPlay();
     }
     if(!shallowequal(prevState.activeIndex,this.state.activeIndex)){
       let {direction,activeIndex}=this.state;
@@ -37,9 +41,12 @@ export class React_Bootstrap_Carousel extends React.Component {
   }
   componentDidMount(){
     if(this.props.children.length>0){
-      this._pause();
-      this._play();
+      this._autoPlay();
     }
+  }
+  _autoPlay=()=>{
+    this._pause();
+    this.props.autoplay && this._play();
   }
   slideNext=()=>{
     let {activeIndex}=this.state;
@@ -77,7 +84,7 @@ export class React_Bootstrap_Carousel extends React.Component {
     this._pause();
   }
   _handleMouseOut=()=>{
-    if (this.isPaused) {
+    if (this.isPaused && this.props.autoplay) {
       this._play();
     }
   }

@@ -209,6 +209,11 @@ var React_Bootstrap_Carousel = exports.React_Bootstrap_Carousel = function (_Rea
 
     var _this = _possibleConstructorReturn(this, (React_Bootstrap_Carousel.__proto__ || Object.getPrototypeOf(React_Bootstrap_Carousel)).call(this, props));
 
+    _this._autoPlay = function () {
+      _this._pause();
+      _this.props.autoplay && _this._play();
+    };
+
     _this.slideNext = function () {
       var activeIndex = _this.state.activeIndex;
 
@@ -253,7 +258,7 @@ var React_Bootstrap_Carousel = exports.React_Bootstrap_Carousel = function (_Rea
     };
 
     _this._handleMouseOut = function () {
-      if (_this.isPaused) {
+      if (_this.isPaused && _this.props.autoplay) {
         _this._play();
       }
     };
@@ -321,8 +326,10 @@ var React_Bootstrap_Carousel = exports.React_Bootstrap_Carousel = function (_Rea
     key: 'componentDidUpdate',
     value: function componentDidUpdate(prevProps, prevState) {
       if (this.props.children.length > 0) {
-        this._pause();
-        this._play();
+        this._autoPlay();
+      }
+      if (!(0, _shallowequal2.default)(prevProps.autoplay, this.props.autoplay)) {
+        this._autoPlay();
       }
       if (!(0, _shallowequal2.default)(prevState.activeIndex, this.state.activeIndex)) {
         var _state = this.state,
@@ -336,8 +343,7 @@ var React_Bootstrap_Carousel = exports.React_Bootstrap_Carousel = function (_Rea
     key: 'componentDidMount',
     value: function componentDidMount() {
       if (this.props.children.length > 0) {
-        this._pause();
-        this._play();
+        this._autoPlay();
       }
     }
   }, {
@@ -378,6 +384,7 @@ React_Bootstrap_Carousel.defaultProps = {
   slideshowSpeed: 7000,
   defaultActiveIndex: 0,
   wrap: true,
+  autoplay: true,
   children: [],
   animation: true,
   className: "",
