@@ -20,22 +20,22 @@
     "min": "webpack --min"
   },
   "dependencies": {
-    "react": "^16.0.0",
-    "react-bootstrap-carousel": "^2.2.0",
-    "react-dom": "^16.0.0"
+    "react": "^16.2.0",
+    "react-bootstrap-carousel": "^2.2.1",
+    "react-dom": "^16.2.0"
   },
   "devDependencies": {
     "babel-core": "^6.5.2",
     "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.0",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
     "css-loader": "^0.28.7",
-    "extract-text-webpack-plugin": "^3.0.0",
-    "file-loader": "^1.1.4",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.6",
     "react-loader": "^2.0.0",
-    "style-loader": "^0.18.2",
-    "url-loader": "^0.5.6",
-    "webpack": "^3.6.0"
+    "style-loader": "^0.19.1",
+    "url-loader": "^0.6.2",
+    "webpack": "^3.10.0"
   }
 }

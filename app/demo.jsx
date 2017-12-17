@@ -46,7 +46,7 @@ class Demo extends React.Component {
       return(
         <div className="container-fluid">
           <div className="row">
-            <div className="col-md-12">
+            <div className="col-md-12" style={{paddingTop:'20px'}}>
               <button type="button" className="btn btn-default" onClick={this._changeIcon}>
                 Change Icon
               </button>
@@ -63,7 +63,7 @@ class Demo extends React.Component {
                 Autoplay
               </button>
             </div>
-            <div className="col-md-12">
+            <div className="col-md-12" style={{paddingTop:'20px'}}>
               <React_Bootstrap_Carousel
                 animation={true}
                 autoplay={this.state.autoplay}
