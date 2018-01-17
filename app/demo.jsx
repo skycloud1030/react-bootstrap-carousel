@@ -60,7 +60,7 @@ class Demo extends React.Component {
                 Go to slide 4
               </button>
               <button type="button" className="btn btn-default" onClick={this.autoplay}>
-                Autoplay
+                {this.state.autoplay?"Stop Autoplay":"Start Autoplay"}
               </button>
             </div>
             <div className="col-md-12" style={{paddingTop:'20px'}}>
