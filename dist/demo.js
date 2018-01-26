@@ -19515,6 +19515,11 @@ var React_Bootstrap_Carousel = exports.React_Bootstrap_Carousel = function (_Rea
       }
     }
   }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this.timeout && clearTimeout(this.timeout);
+    }
+  }, {
     key: '_waitForNext',
     value: function _waitForNext() {
       if (!this.isPaused && this.props.activeIndex == null) {

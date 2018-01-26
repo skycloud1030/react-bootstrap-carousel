@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "react": "^16.2.0",
-    "react-bootstrap-carousel": "^2.2.1",
+    "react-bootstrap-carousel": "^2.2.2",
     "react-dom": "^16.2.0"
   },
   "devDependencies": {
