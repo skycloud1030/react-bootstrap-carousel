@@ -44,6 +44,9 @@ export class React_Bootstrap_Carousel extends React.Component {
       this._autoPlay();
     }
   }
+  componentWillUnmount(){
+    this.timeout && clearTimeout(this.timeout);
+  }
   _autoPlay=()=>{
     this._pause();
     this.props.autoplay && this._play();

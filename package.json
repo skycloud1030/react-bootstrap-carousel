@@ -1,6 +1,6 @@
 {
   "name": "react-bootstrap-carousel",
-  "version": "2.2.0",
+  "version": "2.2.2",
   "description": "react-bootstrap-carousel",
   "license": "MIT",
   "main": "dist/react-bootstrap-carousel.js",
@@ -27,11 +27,12 @@
     "shallowequal": "^1.0.2"
   },
   "devDependencies": {
-    "react-loader": "^2.0.0",
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "react-loader": "^2.0.0",
     "webpack": "^3.8.1"
   }
 }
