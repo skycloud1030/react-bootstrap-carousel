@@ -1,16 +1,20 @@
 # react-bootstrap-carousel
+![Version](https://img.shields.io/npm/v/react-bootstrap-carousel.svg)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
+[![Donloads](https://img.shields.io/npm/dm/react-bootstrap-carousel.svg)](https://www.npmjs.com/package/react-bootstrap-carousel)
+
 
 A carousel component for react (with bootstrap@3.3.7). This project is a react port of: [react-bootstrap](https://react-bootstrap.github.io/components/carousel)
 
 ## Install
 
-```
+```sh
 npm i --save react-bootstrap-carousel
 ```
 
 ## Getting Started
 
-```
+```js
 import {React_Bootstrap_Carousel} from 'react-bootstrap-carousel';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'react-bootstrap-carousel/dist/react-bootstrap-carousel.css';
@@ -20,7 +24,7 @@ import 'react-bootstrap-carousel/dist/react-bootstrap-carousel.css';
 
 [fade](https://skycloud1030.github.io/react-bootstrap-carousel/example/fade.html)
 
-```javascript
+```js
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.css';
