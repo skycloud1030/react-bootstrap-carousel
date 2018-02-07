@@ -22,7 +22,7 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "react": "^16.2.0",
-    "react-bootstrap-carousel": "^2.2.2",
+    "react-bootstrap-carousel": "^2.3.0",
     "react-dom": "^16.2.0"
   },
   "devDependencies": {
