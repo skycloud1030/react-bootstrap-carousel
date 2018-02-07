@@ -1,6 +1,6 @@
 {
   "name": "react-bootstrap-carousel",
-  "version": "2.2.2",
+  "version": "2.3.0",
   "description": "react-bootstrap-carousel",
   "license": "MIT",
   "main": "dist/react-bootstrap-carousel.js",
@@ -17,9 +17,13 @@
   "scripts": {
     "start": "webpack --progress --colors --watch",
     "build": "webpack",
-    "test": "jest",
+    "test": "jest --coverage && cat ./coverage/lcov.info | coveralls",
     "min": "webpack --min"
   },
+  "files": [
+    "fonts",
+    "dist"
+  ],
   "dependencies": {
     "bootstrap": "^3.3.7",
     "classnames": "^2.2.5",
@@ -34,6 +38,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "coveralls": "^3.0.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "jest": "^22.1.4",
