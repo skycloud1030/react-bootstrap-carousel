@@ -1,5 +1,5 @@
 # react-bootstrap-carousel
-![Version](https://img.shields.io/npm/v/react-bootstrap-carousel.svg)
+[![Version](https://img.shields.io/npm/v/react-bootstrap-carousel.svg)](https://www.npmjs.com/package/react-bootstrap-carousel)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
 [![Donloads](https://img.shields.io/npm/dm/react-bootstrap-carousel.svg)](https://www.npmjs.com/package/react-bootstrap-carousel)
 
