@@ -20,6 +20,7 @@
     "min": "webpack --min"
   },
   "dependencies": {
+    "bootstrap": "^3.3.7",
     "react": "^16.2.0",
     "react-bootstrap-carousel": "^2.2.2",
     "react-dom": "^16.2.0"
@@ -34,7 +35,7 @@
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.6",
     "react-loader": "^2.0.0",
-    "style-loader": "^0.19.1",
+    "style-loader": "^0.20.1",
     "url-loader": "^0.6.2",
     "webpack": "^3.10.0"
   }

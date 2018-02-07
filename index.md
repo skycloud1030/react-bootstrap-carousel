@@ -1,6 +1,6 @@
 # react-bootstrap-carousel
 
-A carousel component for react (with bootstrap). This project is a react port of: [react-bootstrap](http://react-bootstrap.github.io/components.html#carousels)
+A carousel component for react (with bootstrap@3.3.7). This project is a react port of: [react-bootstrap](https://react-bootstrap.github.io/components/carousel)
 
 ## Install
 
@@ -20,7 +20,7 @@ import 'react-bootstrap-carousel/dist/react-bootstrap-carousel.css';
 
 [fade](https://skycloud1030.github.io/react-bootstrap-carousel/example/fade.html)
 
-```
+```javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.css';
