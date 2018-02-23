@@ -1,12 +1,21 @@
 var path = require('path');
 var webpack = require('webpack');
 var node_modules_dir = __dirname + '/node_modules';
-
-var min= process.argv.indexOf("--min")===-1?false:true;
 var plugins=[];
-if(min){
-  plugins.push(new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } }));
+function webpackfunction(env) {
+  plugins.push(
+    new webpack.DefinePlugin({
+      "process.env.NODE_ENV": JSON.stringify("production")
+    })
+  );
+  if (env && env.prod) {
+    plugins.push(
+      new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } })
+    );
+  }
+  return config;
 }
+
 
 var config = {
     entry: {
@@ -42,4 +51,4 @@ var config = {
     }
 };
 
-module.exports = config;
+module.exports = webpackfunction;
