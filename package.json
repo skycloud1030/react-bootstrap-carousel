@@ -18,6 +18,7 @@
     "start": "webpack --progress --colors --watch",
     "build": "webpack",
     "test": "jest --coverage && cat ./coverage/lcov.info | coveralls",
+    "jest": "jest --coverage",
     "min": "webpack --min"
   },
   "files": [
@@ -33,7 +34,7 @@
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
-    "babel-jest": "^22.1.0",
+    "babel-jest": "^22.4.1",
     "babel-loader": "^7.0.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
@@ -41,9 +42,9 @@
     "coveralls": "^3.0.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
-    "jest": "^22.1.4",
-    "react-loader": "^2.0.0",
+    "jest": "^22.4.2",
+    "react-loader": "^2.4.3",
     "react-test-render": "^1.1.1",
-    "webpack": "^3.8.1"
+    "webpack": "^3.11.0"
   }
 }
