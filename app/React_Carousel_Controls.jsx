@@ -1,80 +1,68 @@
 /*React_Carousel_Controls.jsx*/
-import React from 'react';
-import ReactDOM from 'react-dom';
-import classNames from 'classnames';
+import React from "react";
 
-export class React_Carousel_Controls extends React.Component{
-  static defaultProps={
-    dataLength:0,
-    controlsClick:()=>{}
-  }
-  constructor(props){
+export class React_Carousel_Controls extends React.PureComponent {
+  static defaultProps = {
+    dataLength: 0,
+    controlsClick: () => {},
+    version: 3
+  };
+  constructor(props) {
     super(props);
-    this.state={
-      leftCss:"left carousel-control",
-      rightCss:"right carousel-control"
-    }
+    this.state = {};
   }
-  _onclick=(call)=>{
+  _onclick = call => {
     this.props.controlsClick(call);
-  }
-  render(){
-    let {rightIcon,leftIcon,dataLength}=this.props;
-    if(dataLength<2){
+  };
+  render() {
+    let { rightIcon, leftIcon, dataLength, version } = this.props;
+    let leftCss = "";
+    let rightCss = "";
+    if (version == 4) {
+      leftCss = "left carousel-control-prev";
+      rightCss = "right carousel-control-next";
+      leftIcon = leftIcon || <i className="icon icon-chevron-left" />;
+      rightIcon = rightIcon || <i className="icon icon-chevron-right" />;
+    } else {
+      leftCss = "left carousel-control";
+      rightCss = "right carousel-control";
+      leftIcon = leftIcon || <i className="glyphicon glyphicon-chevron-left" />;
+      rightIcon = rightIcon || (
+        <i className="glyphicon glyphicon-chevron-right" />
+      );
+    }
+    if (dataLength < 2) {
       return null;
     }
-    return(
+    return (
       <div>
-        <a className={this.state.leftCss} onClick={this._onclick.bind(this,"prev")}>
+        <a className={leftCss} onClick={this._onclick.bind(this, "prev")}>
           <React_FlexSlider_Icon_Left icon={leftIcon} />
         </a>
-        <a className={this.state.rightCss} onClick={this._onclick.bind(this,"next")}>
+        <a className={rightCss} onClick={this._onclick.bind(this, "next")}>
           <React_FlexSlider_Icon_Right icon={rightIcon} />
         </a>
       </div>
-    )
+    );
   }
-};
+}
 
-export class React_FlexSlider_Icon_Right extends React.Component{
-  constructor(props){
+export class React_FlexSlider_Icon_Right extends React.PureComponent {
+  constructor(props) {
     super(props);
   }
-  render(){
-    let {icon,style,css}=this.props;
-    if(this.props.icon){
-      return(
-        <span className="rightControl">
-          {icon}
-        </span>
-      );
-    }
-    else{
-      return(
-        <span className="glyphicon glyphicon-chevron-right"></span>
-      );
-    }
-
+  render() {
+    let { icon, style, css } = this.props;
+    return <span className="rightControl">{icon}</span>;
   }
-};
+}
 
-export class React_FlexSlider_Icon_Left extends React.Component{
-  constructor(props){
+export class React_FlexSlider_Icon_Left extends React.PureComponent {
+  constructor(props) {
     super(props);
   }
-  render(){
-    let {icon,style,css}=this.props;
-    if(this.props.icon){
-      return(
-        <span className="leftControl">
-          {icon}
-        </span>
-      );
-    }
-    else{
-      return(
-        <span className="glyphicon glyphicon-chevron-left"></span>
-      );
-    }
+  render() {
+    let { icon, style, css } = this.props;
+    return <span className="leftControl">{icon}</span>;
   }
-};
+}
