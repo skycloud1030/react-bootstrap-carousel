@@ -47,19 +47,19 @@ class Demo extends React.Component {
         <div className="container-fluid">
           <div className="row">
             <div className="col-md-12" style={{paddingTop:'20px'}}>
-              <button type="button" className="btn btn-default" onClick={this._changeIcon}>
+              <button type="button" className="btn btn-primary" onClick={this._changeIcon}>
                 Change Icon
-              </button>
-              <button type="button" className="btn btn-default" onClick={this.slidePrev}>
+              </button>{' '}
+              <button type="button" className="btn btn-primary" onClick={this.slidePrev}>
                 Slider prev
-              </button>
-              <button type="button" className="btn btn-default" onClick={this.slideNext}>
+              </button>{' '}
+              <button type="button" className="btn btn-primary" onClick={this.slideNext}>
                 Slider next
-              </button>
-              <button type="button" className="btn btn-default" onClick={this.goToSlide}>
+              </button>{' '}
+              <button type="button" className="btn btn-primary" onClick={this.goToSlide}>
                 Go to slide 4
-              </button>
-              <button type="button" className="btn btn-default" onClick={this.autoplay}>
+              </button>{' '}
+              <button type="button" className="btn btn-primary" onClick={this.autoplay}>
                 {this.state.autoplay?"Stop Autoplay":"Start Autoplay"}
               </button>
             </div>

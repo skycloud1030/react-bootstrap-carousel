@@ -17,7 +17,7 @@
   "scripts": {
     "start": "webpack --progress --colors --watch",
     "build": "webpack",
-    "min": "webpack --min"
+    "min": "webpack --env.prod"
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
