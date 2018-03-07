@@ -6,38 +6,91 @@ import { React_Bootstrap_Carousel } from "./React_Bootstrap_Carousel.jsx";
 import { React_Carousel_Item } from "./React_Carousel_Item.jsx";
 
 describe("React_Bootstrap_Carousel", () => {
-  const wrapper = mount(
+  const carousel = mount(
     <React_Bootstrap_Carousel defaultActiveIndex={1}>
       <div>Test1</div>
       <div>Test2</div>
       <div>Test3</div>
     </React_Bootstrap_Carousel>
   );
-  const carousel = wrapper.instance();
-  const carousel_item = wrapper.find(React_Carousel_Item).instance();
+  const carousel_element = carousel.instance();
+  const carousel_item = carousel.find(React_Carousel_Item).instance();
   it("Should have next and prev", () => {
-    expect(typeof carousel.slideNext).toBe("function");
-    expect(typeof carousel.slidePrev).toBe("function");
+    expect(typeof carousel_element.slideNext).toBe("function");
+    expect(typeof carousel_element.slidePrev).toBe("function");
   });
   it("Should show the correct item with defaultActiveIndex", () => {
-    expect(carousel_item.props.activeIndex).toBe(carousel.props.defaultActiveIndex);
+    expect(carousel_item.props.activeIndex).toBe(
+      carousel_element.props.defaultActiveIndex
+    );
   });
   it("Should goToSlide to corret item", () => {
-    carousel.goToSlide(0);
+    carousel_element.goToSlide(0);
     expect(carousel_item.props.activeIndex).toBe(0);
   });
   it("Should slidePrev to corret item", () => {
-    carousel.goToSlide(1);
+    carousel_element.goToSlide(1);
     const prev = carousel_item.props.activeIndex;
-    carousel.slidePrev();
+    carousel_element.slidePrev();
     const next = carousel_item.props.activeIndex;
     expect(next).toBe(0);
   });
   it("Should slideNext to corret item", () => {
-    carousel.goToSlide(1);
+    carousel_element.goToSlide(1);
     const prev = carousel_item.props.activeIndex;
-    carousel.slideNext();
+    carousel_element.slideNext();
     const next = carousel_item.props.activeIndex;
     expect(next).toBe(2);
+    carousel_element.goToSlide(2);
+    carousel_element.slideNext();
+    let activeIndex = carousel_item.props.activeIndex;
+    expect(activeIndex).toBe(0);
+    carousel_element.goToSlide(0);
+    carousel_element.slidePrev();
+    activeIndex = carousel_item.props.activeIndex;
+    expect(activeIndex).toBe(2);
+  });
+  it("Should autoplay work", () => {
+    carousel.setProps({ autoplay: false });
+    expect(carousel.instance().isPaused).toBe(true);
+  });
+  it("Should wrap work", () => {
+    let activeIndex;
+    carousel.setProps({ wrap: false });
+    const carousel_element2 = carousel.instance();
+    carousel_element2.goToSlide(2);
+    carousel_element2.slideNext();
+    activeIndex = carousel_item.props.activeIndex;
+    expect(activeIndex).toBe(2);
+    carousel_element2.goToSlide(0);
+    carousel_element2.slidePrev();
+    activeIndex = carousel_item.props.activeIndex;
+    expect(activeIndex).toBe(0);
+  });
+  it("Should mouseOver work", () => {
+    carousel.setProps({ autoplay: true, wrap: true });
+    carousel.simulate("mouseover");
+    expect(carousel.instance().isPaused).toBe(true);
+    carousel.simulate("mouseout");
+    expect(carousel.instance().isPaused).toBe(false);
+  });
+  it("Should control work", () => {
+    let activeIndex;
+    carousel_element.goToSlide(1);
+    carousel.find(".left .carousel-control").simulate("click");
+    activeIndex = carousel_item.props.activeIndex;
+    expect(activeIndex).toBe(0);
+    carousel.find(".right .carousel-control").simulate("click");
+    activeIndex = carousel_item.props.activeIndex;
+    expect(activeIndex).toBe(1);
+  });
+  it("Should indicators work", () => {
+    carousel
+      .find(".carousel-indicators li")
+      .at(0)
+      .simulate("click");
+    let activeIndex = carousel_item.props.activeIndex;
+    expect(activeIndex).toBe(0);
+    carousel.unmount();
   });
 });
