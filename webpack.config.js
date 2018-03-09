@@ -2,24 +2,11 @@ var path = require('path');
 var webpack = require('webpack');
 var node_modules_dir = __dirname + '/node_modules';
 var plugins=[];
-function webpackfunction(env) {
-  plugins.push(
-    new webpack.DefinePlugin({
-      "process.env.NODE_ENV": JSON.stringify("production")
-    })
-  );
-  if (env && env.prod) {
-    plugins.push(
-      new webpack.optimize.UglifyJsPlugin({ compress: { warnings: false } })
-    );
-  }
-  return config;
-}
-
 
 var config = {
     entry: {
-      "demo":path.resolve(__dirname, 'app/demo.jsx'),
+      "demoV3":path.resolve(__dirname, 'app/demoV3.jsx'),
+      "demoV4":path.resolve(__dirname, 'app/demoV4.jsx'),
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
@@ -27,7 +14,7 @@ var config = {
     },
     plugins: plugins,
     module: {
-        loaders: [
+       rules: [
           {
             test: /\.js[x]?$/,
             exclude: /(node_modules|bower_components)/,
@@ -51,4 +38,4 @@ var config = {
     }
 };
 
-module.exports = webpackfunction;
+module.exports = config;

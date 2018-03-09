@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'bootstrap/dist/css/bootstrap.css';
 import 'react-bootstrap-carousel/dist/react-bootstrap-carousel.css';
 import {React_Bootstrap_Carousel} from 'react-bootstrap-carousel';
 
@@ -36,8 +35,8 @@ class Demo extends React.Component {
       }
       else{
         this.setState({
-          leftIcon:<span className="glyphicon glyphicon-glass"></span>,
-          rightIcon:<span className="glyphicon glyphicon-music"></span>
+          leftIcon:<span className="fa fa-glass"></span>,
+          rightIcon:<span className="fa fa-music"></span>
         });
       }
     }
@@ -73,11 +72,12 @@ class Demo extends React.Component {
                 onSelect={this.onSelect}
                 ref={r=>this.slider=r}
                 className="carousel-fade"
+                version={4}
               >
                 <div style={{height:400}}>
                   <img
                     style={{width:"100%",height:"100%"}}
-                    src="https://www.w3schools.com/bootstrap/la.jpg"
+                    src="https://www.w3schools.com/bootstrap/ny.jpg"
                   />
                   <div className="carousel-caption">
                     Image
