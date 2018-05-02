@@ -25,11 +25,15 @@ import "bootstrap/dist/css/bootstrap.css";
 import "react-bootstrap-carousel/dist/react-bootstrap-carousel.css";
 ```
 
-## Demo
+## Bootstrap@3.3.7 demo
 
-[Bootstrap_V3 demo](https://skycloud1030.github.io/react-bootstrap-carousel/example/demoV3.html)
+* [preview](https://skycloud1030.github.io/react-bootstrap-carousel/example/demoV3.html)
+* [code](https://github.com/skycloud1030/react-bootstrap-carousel/blob/gh-pages/app/demoV3.jsx)
 
-[Bootstrap_V4 demo](https://skycloud1030.github.io/react-bootstrap-carousel/example/demoV4.html)
+## Bootstrap@4.1 demo
+
+* [preview](https://skycloud1030.github.io/react-bootstrap-carousel/example/demoV4.html)
+* [code](https://github.com/skycloud1030/react-bootstrap-carousel/blob/gh-pages/app/demoV4.jsx)
 
 ## version
 
