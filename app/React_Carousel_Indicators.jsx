@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 
-export class React_Carousel_Indicators extends React.Component{
+export class React_Carousel_Indicators extends React.PureComponent{
   static defaultProps={
     data:[],
     activeIndex:0,
