@@ -35,99 +35,26 @@ import "react-bootstrap-carousel/dist/react-bootstrap-carousel.css";
 * [preview](https://skycloud1030.github.io/react-bootstrap-carousel/example/demoV4.html)
 * [code](https://github.com/skycloud1030/react-bootstrap-carousel/blob/gh-pages/app/demoV4.jsx)
 
-## version
+## Properties
 
-Support Bootstrap version 3 || Bootstrap version 4
+| Props              | Type                     | Description                                              | Default |
+| :----------------- | :----------------------- | :------------------------------------------------------- | :------ |
+| version            | number                   | Bootstrap version 3 &#124; version 4                     | 3       |
+| defaultActiveIndex | number                   |                                                          | 0       |
+| slideshowSpeed     | number                   |                                                          | 7000    |
+| animation          | boolean                  | whether to show animation                                | true    |
+| autoplay           | boolean                  | Whether to scroll automatically                          | true    |
+| wrap               | boolean                  |                                                          | true    |
+| indicators         | boolean                  | Whether to show the dots at the bottom of the gallery    | true    |
+| leftIcon           | ReactNode                |                                                          | -       |
+| rightIcon          | ReactNode                |                                                          | -       |
+| onSelect           | function(value: number ) | Callback function called after the current index changes | -       |
+| className          | string                   | carousel-fade &#124; ""                                  | -       |
 
-```
-Type:number
-Default:3
-```
+## Methods
 
-## className
-
-```
-Type:string
-Default:""
-```
-
-## defaultActiveIndex
-
-```
-Type:number
-Default:0
-```
-
-## slideshowSpeed
-
-```
-Type:number
-Default:7000
-```
-
-## animation
-
-```
-Type:boolean
-Default:true
-```
-
-## autoplay
-
-```
-Type:boolean
-Default:true
-```
-
-## wrap
-
-```
-Type:boolean
-Default:true
-```
-
-## indicators
-
-```
-Type:boolean
-Default:true
-```
-
-## slidePrev
-
-```
-Type:function
-slidePrev=()=>{this.slider.slidePrev();}
-```
-
-## slideNext
-
-```
-Type:function
-slideNext=()=>{this.slider.slideNext();}
-```
-
-## goToSlide
-
-```
-goToSlide=()=>{this.slider.goToSlide(2);}
-```
-
-## onSelect
-
-```
-Type:function
-Description: callback when active change
-```
-
-## leftIcon
-
-```
-Type:node
-```
-
-## rightIcon
-
-```
-Type:node
-```
+| Name      | Description                                |
+| :-------- | :----------------------------------------- |
+| slidePrev | Change current slide to previous slide     |
+| slideNext | Change current slide to next slide         |
+| goToSlide | Change current slide to given slide number |
