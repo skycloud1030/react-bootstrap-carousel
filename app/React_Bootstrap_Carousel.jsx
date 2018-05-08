@@ -97,9 +97,7 @@ export class React_Bootstrap_Carousel extends React.PureComponent {
     clearTimeout(this.timeout);
   };
   _waitForNext() {
-    if (!this.isPaused && this.props.activeIndex == null) {
-      this.timeout = setTimeout(this.slideNext, this.props.slideshowSpeed);
-    }
+    this.timeout = setTimeout(this.slideNext, this.props.slideshowSpeed);
   }
   _play = () => {
     this.isPaused = false;

@@ -13,6 +13,9 @@ describe("React_Bootstrap_Carousel", () => {
       <div>Test3</div>
     </React_Bootstrap_Carousel>
   );
+  const carousel2 = mount(
+    <React_Bootstrap_Carousel defaultActiveIndex={1}/>
+  );
   const carousel_element = carousel.instance();
   const carousel_item = carousel.find(React_Carousel_Item).instance();
   it("Should have next and prev", () => {
@@ -51,6 +54,7 @@ describe("React_Bootstrap_Carousel", () => {
     expect(activeIndex).toBe(2);
   });
   it("Should autoplay work", () => {
+    carousel2.setProps({ autoplay: false });
     carousel.setProps({ autoplay: false });
     expect(carousel.instance().isPaused).toBe(true);
   });
@@ -73,10 +77,20 @@ describe("React_Bootstrap_Carousel", () => {
     expect(carousel.instance().isPaused).toBe(true);
     carousel.simulate("mouseout");
     expect(carousel.instance().isPaused).toBe(false);
+    carousel.setProps({ autoplay: false});
+    carousel.simulate("mouseover");
+    carousel.simulate("mouseout");
+    carousel.simulate("mouseover");
+    carousel.setProps({ autoplay: true});
+  });
+  it("Should version work", () => {
+    carousel.setProps({ version: 4, controls: false });
+    expect(carousel_item.props.version).toBe(4);
   });
   it("Should control work", () => {
     let activeIndex;
     carousel_element.goToSlide(1);
+    carousel.setProps({ version: 3, controls: true, indicators: false });
     carousel.find(".left .carousel-control").simulate("click");
     activeIndex = carousel_item.props.activeIndex;
     expect(activeIndex).toBe(0);
@@ -85,6 +99,7 @@ describe("React_Bootstrap_Carousel", () => {
     expect(activeIndex).toBe(1);
   });
   it("Should indicators work", () => {
+    carousel.setProps({ indicators: true });
     carousel
       .find(".carousel-indicators li")
       .at(0)

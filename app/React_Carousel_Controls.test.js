@@ -23,11 +23,14 @@ describe("React_Carousel_Controls", () => {
     expect(carousel_control).toBe("prev");
     controls.find(".right .carousel-control").simulate("click");
     expect(carousel_control).toBe("next");
-
+    controls.setProps({ version: 4 });
+    expect(controls.find(".left .carousel-control-prev").length).toBe(1);
+    expect(controls.find(".right .carousel-control-next").length).toBe(1);
     controls.setProps({ dataLength: 1 });
     expect(controls.find(".left .carousel-control").length).toBe(0);
     expect(controls.find(".right .carousel-control").length).toBe(0);
-    controls.setProps({ leftIcon, rightIcon, dataLength: 2 });
+    controls.setProps({ leftIcon, rightIcon, dataLength: 2});
     controls_empty.find(".left .carousel-control").simulate("click");
+    
   });
 });
