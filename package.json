@@ -4,7 +4,11 @@
   "description": "React port of bootstrap carousel",
   "license": "MIT",
   "main": "dist/react-bootstrap-carousel.js",
-  "keywords": ["react", "bootstrap", "carousel"],
+  "keywords": [
+    "react",
+    "bootstrap",
+    "carousel"
+  ],
   "author": "skycloud1030",
   "repository": {
     "type": "git",
@@ -16,7 +20,10 @@
     "test": "jest --coverage && cat ./coverage/lcov.info | coveralls",
     "jest": "jest --coverage"
   },
-  "files": ["fonts", "dist"],
+  "files": [
+    "fonts",
+    "dist"
+  ],
   "dependencies": {
     "classnames": "^2.2.5",
     "react": "^16.3.2",
