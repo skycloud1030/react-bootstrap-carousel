@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { React_Carousel_Indicators } from "./React_Carousel_Indicators.jsx";
 import { React_Carousel_Controls } from "./React_Carousel_Controls.jsx";
 import { React_Carousel_Item } from "./React_Carousel_Item.jsx";
-import shallowequal from "shallowequal";
+import shallowequal from "fbjs/lib/shallowEqual";
 
 /* React_Bootstrap_Carousel.jsx*/
 export class React_Bootstrap_Carousel extends React.PureComponent {
@@ -24,8 +24,7 @@ export class React_Bootstrap_Carousel extends React.PureComponent {
     super(props);
     this.state = {
       activeIndex: this.props.defaultActiveIndex,
-      className: classNames("carousel slide", this.props.className),
-      animation: this.props.animation
+      className: classNames("carousel slide", this.props.className)
     };
   }
   componentDidUpdate(prevProps, prevState) {
@@ -54,7 +53,6 @@ export class React_Bootstrap_Carousel extends React.PureComponent {
   };
   slideNext = () => {
     let { activeIndex } = this.state;
-    let prevIndex = activeIndex;
     let { wrap } = this.props;
     let count = this.props.children.length;
     let index = activeIndex + 1;
@@ -72,7 +70,6 @@ export class React_Bootstrap_Carousel extends React.PureComponent {
   };
   slidePrev = () => {
     let { activeIndex } = this.state;
-    let prevIndex = activeIndex;
     let { wrap } = this.props;
     let index = activeIndex - 1;
     let count = this.props.children.length;
@@ -123,11 +120,7 @@ export class React_Bootstrap_Carousel extends React.PureComponent {
     let { activeIndex } = this.state;
     if (indicators) {
       return (
-        <React_Carousel_Indicators
-          data={children}
-          activeIndex={activeIndex}
-          indClick={this._indClick}
-        />
+        <React_Carousel_Indicators data={children} activeIndex={activeIndex} indClick={this._indClick} />
       );
     }
   };
@@ -149,7 +142,8 @@ export class React_Bootstrap_Carousel extends React.PureComponent {
   };
   render() {
     const { children, version } = this.props;
-    const { activeIndex, className, animation } = this.state;
+    const { activeIndex, className } = this.state;
+    const { animation } = this.props;
     return (
       <div
         className={classNames(className)}
