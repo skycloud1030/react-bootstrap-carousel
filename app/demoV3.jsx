@@ -47,39 +47,19 @@ class Demo extends React.PureComponent {
         <div className="row">
           <div className="col-md-12" style={{ paddingTop: "20px" }}>
             <div className="btn-group">
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={this._changeIcon}
-              >
+              <button type="button" className="btn btn-primary" onClick={this._changeIcon}>
                 Change Icon
               </button>
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={this.slidePrev}
-              >
+              <button type="button" className="btn btn-primary" onClick={this.slidePrev}>
                 Slider prev
               </button>
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={this.slideNext}
-              >
+              <button type="button" className="btn btn-primary" onClick={this.slideNext}>
                 Slider next
               </button>
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={this.goToSlide}
-              >
+              <button type="button" className="btn btn-primary" onClick={this.goToSlide}>
                 Go to slide 4
               </button>
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={this.autoplay}
-              >
+              <button type="button" className="btn btn-primary" onClick={this.autoplay}>
                 {this.state.autoplay ? "Stop Autoplay" : "Start Autoplay"}
               </button>
             </div>
@@ -103,16 +83,8 @@ class Demo extends React.PureComponent {
                 <div className="carousel-caption">Image</div>
               </div>
               <div style={{ ...styles, backgroundColor: "aqua" }}>
-                <video
-                  className="carousel-center"
-                  controls
-                  style={{ width: "75%" }}
-                  height="250"
-                >
-                  <source
-                    src="https://www.w3schools.com/html/mov_bbb.mp4"
-                    type="video/mp4"
-                  />
+                <video className="carousel-center" controls style={{ width: "75%" }} height="250">
+                  <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
                 </video>
                 <div className="carousel-caption">Video</div>
               </div>
@@ -147,15 +119,11 @@ class Demo extends React.PureComponent {
           <div className="col-md-12" style={{ marginTop: 20 }}>
             <React_Bootstrap_Carousel className="carousel-fade">
               <div style={{ ...styles, backgroundColor: "darkcyan" }}>
-                <div className="carousel-center">
-                  This carsouel transition is fade
-                </div>
+                <div className="carousel-center">This carsouel transition is fade</div>
                 <div className="carousel-caption">Text</div>
               </div>
               <div style={{ ...styles, backgroundColor: "yellowgreen" }}>
-                <span className="carousel-center">
-                  This carsouel transition is fade
-                </span>
+                <span className="carousel-center">This carsouel transition is fade</span>
                 <div className="carousel-caption">Text</div>
               </div>
             </React_Bootstrap_Carousel>
