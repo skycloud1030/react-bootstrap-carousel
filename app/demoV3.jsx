@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "react-bootstrap-carousel/dist/react-bootstrap-carousel.css";
-import { React_Bootstrap_Carousel } from "react-bootstrap-carousel";
+import RBCarousel from "react-bootstrap-carousel";
 
 const styles = { height: 400, width: "100%" };
+
 class Demo extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -13,6 +14,9 @@ class Demo extends React.PureComponent {
   }
   onSelect = (active, direction) => {
     console.log(`active=${active} && direction=${direction}`);
+  };
+  visiableOnSelect = active => {
+    console.log(`visiable onSelect active=${active}`);
   };
   slideNext = () => {
     this.slider.slideNext();
@@ -28,47 +32,39 @@ class Demo extends React.PureComponent {
   };
   _changeIcon = () => {
     let { leftIcon, rightIcon } = this.state;
-    if (leftIcon && rightIcon) {
-      this.setState({
-        leftIcon: undefined,
-        rightIcon: undefined
-      });
-    } else {
-      this.setState({
-        leftIcon: <span className="glyphicon glyphicon-glass" />,
-        rightIcon: <span className="glyphicon glyphicon-music" />
-      });
-    }
+    leftIcon = leftIcon ? undefined : <span className="glyphicon glyphicon-glass" />;
+    rightIcon = rightIcon ? undefined : <span className="glyphicon glyphicon-music" />;
+    this.setState({ leftIcon, rightIcon });
   };
   render() {
     let { leftIcon, rightIcon } = this.state;
     return (
       <div className="container-fluid">
-        <div className="row">
-          <div className="col-md-12" style={{ paddingTop: "20px" }}>
+        <Row>
+          <Col span={12} style={{ paddingTop: "20px" }}>
             <div className="btn-group">
-              <button type="button" className="btn btn-primary" onClick={this._changeIcon}>
+              <Button bsStyle="primary" onClick={this._changeIcon}>
                 Change Icon
-              </button>
-              <button type="button" className="btn btn-primary" onClick={this.slidePrev}>
+              </Button>
+              <Button bsStyle="primary" onClick={this.slidePrev}>
                 Slider prev
-              </button>
-              <button type="button" className="btn btn-primary" onClick={this.slideNext}>
+              </Button>
+              <Button bsStyle="primary" onClick={this.slideNext}>
                 Slider next
-              </button>
-              <button type="button" className="btn btn-primary" onClick={this.goToSlide}>
+              </Button>
+              <Button bsStyle="primary" onClick={this.goToSlide}>
                 Go to slide 4
-              </button>
-              <button type="button" className="btn btn-primary" onClick={this.autoplay}>
+              </Button>
+              <Button bsStyle="primary" onClick={this.autoplay}>
                 {this.state.autoplay ? "Stop Autoplay" : "Start Autoplay"}
-              </button>
+              </Button>
             </div>
-          </div>
-          <div className="col-md-12" style={{ marginTop: 20 }}>
-            <React_Bootstrap_Carousel
+          </Col>
+          <Col span={12} style={{ marginTop: 20 }}>
+            <RBCarousel
               animation={true}
               autoplay={this.state.autoplay}
-              slideshowSpeed={7000}
+              slideshowSpeed={2000}
               defaultActiveIndex={0}
               leftIcon={leftIcon}
               rightIcon={rightIcon}
@@ -88,13 +84,7 @@ class Demo extends React.PureComponent {
                 </video>
                 <div className="carousel-caption">Video</div>
               </div>
-              <div
-                style={{
-                  height: 400,
-                  width: "100%",
-                  backgroundColor: "lightpink"
-                }}
-              >
+              <div style={{ height: 400, width: "100%", backgroundColor: "lightpink" }}>
                 <div className="carousel-center">center Text</div>
                 <div className="carousel-caption">Text</div>
               </div>
@@ -114,10 +104,34 @@ class Demo extends React.PureComponent {
                 </div>
                 <div className="carousel-caption">Youtube</div>
               </div>
-            </React_Bootstrap_Carousel>
-          </div>
-          <div className="col-md-12" style={{ marginTop: 20 }}>
-            <React_Bootstrap_Carousel className="carousel-fade">
+            </RBCarousel>
+          </Col>
+          <Col span={12} style={{ marginTop: 20 }}>
+            <RBCarousel
+              autoplay={this.state.autoplay}
+              pauseOnVisibility={true}
+              onSelect={this.visiableOnSelect}
+              slideshowSpeed={2000}
+            >
+              <div style={{ ...styles, backgroundColor: "lightblue" }}>
+                <div className="carousel-center">
+                  <div>This carsouel won't change if invisiable</div>
+                  <div>pauseOnVisibility = true</div>
+                </div>
+                <div className="carousel-center"> </div>
+                <div className="carousel-caption">Text</div>
+              </div>
+              <div style={{ ...styles, backgroundColor: "lightblue" }}>
+                <div className="carousel-center">
+                  <div>This carsouel won't change if invisiable</div>
+                  <div>pauseOnVisibility = true</div>
+                </div>
+                <div className="carousel-caption">Text</div>
+              </div>
+            </RBCarousel>
+          </Col>
+          <Col span={12} style={{ marginTop: 20 }}>
+            <RBCarousel className="carousel-fade">
               <div style={{ ...styles, backgroundColor: "darkcyan" }}>
                 <div className="carousel-center">This carsouel transition is fade</div>
                 <div className="carousel-caption">Text</div>
@@ -126,11 +140,31 @@ class Demo extends React.PureComponent {
                 <span className="carousel-center">This carsouel transition is fade</span>
                 <div className="carousel-caption">Text</div>
               </div>
-            </React_Bootstrap_Carousel>
-          </div>
-        </div>
+            </RBCarousel>
+          </Col>
+        </Row>
       </div>
     );
   }
 }
+
+/**
+ *  Boostrap Component
+ */
+const Row = props => <div className="row">{props.children}</div>;
+const Col = props => (
+  <div className={`col-xs-${props.span}`} style={props.style}>
+    {props.children}
+  </div>
+);
+const Button = props => {
+  const { style, bsStyle, onClick } = props;
+  const className = bsStyle ? `btn btn-${bsStyle}` : "btn";
+  return (
+    <button style={style} className={className} onClick={onClick}>
+      {props.children}
+    </button>
+  );
+};
+
 ReactDOM.render(<Demo />, document.getElementById("Demo"));

@@ -19,24 +19,24 @@
     "build": "webpack --mode production --progress --color"
   },
   "dependencies": {
-    "bootstrap": "^4.1.1",
-    "react": "^16.4.1",
-    "react-bootstrap-carousel": "^3.1.0",
-    "react-dom": "^16.4.1"
+    "bootstrap": "^4.1.3",
+    "react": "^16.4.2",
+    "react-bootstrap-carousel": "git+https://github.com/skycloud1030/react-bootstrap-carousel.git",
+    "react-dom": "^16.4.2"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.4",
+    "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
-    "css-loader": "^0.28.11",
+    "css-loader": "^1.0.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.11",
     "react-loader": "^2.4.5",
-    "style-loader": "^0.21.0",
-    "url-loader": "^1.0.1",
-    "webpack": "^4.12.2",
-    "webpack-cli": "^3.0.8"
+    "style-loader": "^0.22.1",
+    "url-loader": "^1.1.1",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0"
   }
 }
