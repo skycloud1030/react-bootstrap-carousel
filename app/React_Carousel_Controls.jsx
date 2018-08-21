@@ -1,7 +1,7 @@
 /*React_Carousel_Controls.jsx*/
 import React from "react";
 
-export class React_Carousel_Controls extends React.PureComponent {
+export default class React_Carousel_Controls extends React.PureComponent {
   static defaultProps = {
     dataLength: 0,
     controlsClick: () => {},
@@ -18,22 +18,26 @@ export class React_Carousel_Controls extends React.PureComponent {
     let { rightIcon, leftIcon, dataLength, version } = this.props;
     let leftCss = "";
     let rightCss = "";
-    if (version == 4) {
-      leftCss = "left carousel-control-prev";
-      rightCss = "right carousel-control-next";
-      leftIcon = leftIcon || <i className="icon icon-chevron-left" />;
-      rightIcon = rightIcon || <i className="icon icon-chevron-right" />;
-    } else {
-      leftCss = "left carousel-control";
-      rightCss = "right carousel-control";
-      leftIcon = leftIcon || <i className="glyphicon glyphicon-chevron-left" />;
-      rightIcon = rightIcon || (
-        <i className="glyphicon glyphicon-chevron-right" />
-      );
-    }
+
     if (dataLength < 2) {
       return null;
     }
+
+    switch (version) {
+      case 4:
+        leftCss = "left carousel-control-prev";
+        rightCss = "right carousel-control-next";
+        leftIcon = leftIcon || <i className="icon icon-chevron-left" />;
+        rightIcon = rightIcon || <i className="icon icon-chevron-right" />;
+        break;
+      default:
+        leftCss = "left carousel-control";
+        rightCss = "right carousel-control";
+        leftIcon = leftIcon || <i className="glyphicon glyphicon-chevron-left" />;
+        rightIcon = rightIcon || <i className="glyphicon glyphicon-chevron-right" />;
+        break;
+    }
+    
     return (
       <div>
         <a className={leftCss} onClick={this._onclick.bind(this, "prev")}>
@@ -52,7 +56,7 @@ export class React_FlexSlider_Icon_Right extends React.PureComponent {
     super(props);
   }
   render() {
-    let { icon, style, css } = this.props;
+    let { icon } = this.props;
     return <span className="rightControl">{icon}</span>;
   }
 }
@@ -62,7 +66,7 @@ export class React_FlexSlider_Icon_Left extends React.PureComponent {
     super(props);
   }
   render() {
-    let { icon, style, css } = this.props;
+    let { icon } = this.props;
     return <span className="leftControl">{icon}</span>;
   }
 }

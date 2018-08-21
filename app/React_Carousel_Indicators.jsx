@@ -1,7 +1,7 @@
 /* React_Carousel_Indicators.jsx */
 import React from "react";
 
-export class React_Carousel_Indicators extends React.PureComponent {
+export default class React_Carousel_Indicators extends React.PureComponent {
   static defaultProps = {
     data: [],
     activeIndex: 0,
@@ -20,7 +20,7 @@ export class React_Carousel_Indicators extends React.PureComponent {
   };
   render() {
     const { data, activeIndex } = this.props;
-    const row = data.map((item, index) => {
+    const row = data.map((_item, index) => {
       const className = index == activeIndex ? "active" : "";
       return (
         <li

@@ -1,21 +1,19 @@
 import React from "react";
-import ReactTestUtils from "react-dom/test-utils";
-import ReactDOM from "react-dom";
-import { shallow, mount } from "enzyme";
-import { React_Bootstrap_Carousel } from "./React_Bootstrap_Carousel.jsx";
-import { React_Carousel_Item } from "./React_Carousel_Item.jsx";
+import { mount } from "enzyme";
+import RBCarousel from "./React_Bootstrap_Carousel.jsx";
+import RBCarouselItem from "./React_Carousel_Item.jsx";
 
 describe("React_Bootstrap_Carousel", () => {
   const carousel = mount(
-    <React_Bootstrap_Carousel defaultActiveIndex={1}>
+    <RBCarousel defaultActiveIndex={1}>
       <div>Test1</div>
       <div>Test2</div>
       <div>Test3</div>
-    </React_Bootstrap_Carousel>
+    </RBCarousel>
   );
-  const carousel2 = mount(<React_Bootstrap_Carousel defaultActiveIndex={1} />);
+  const carousel2 = mount(<RBCarousel defaultActiveIndex={1} />);
   const carousel_element = carousel.instance();
-  const carousel_item = carousel.find(React_Carousel_Item).instance();
+  const carousel_item = carousel.find(RBCarouselItem).instance();
   it("Should have next and prev", () => {
     expect(typeof carousel_element.slideNext).toBe("function");
     expect(typeof carousel_element.slidePrev).toBe("function");
@@ -29,14 +27,12 @@ describe("React_Bootstrap_Carousel", () => {
   });
   it("Should slidePrev to corret item", () => {
     carousel_element.goToSlide(1);
-    const prev = carousel_item.props.activeIndex;
     carousel_element.slidePrev();
     const next = carousel_item.props.activeIndex;
     expect(next).toBe(0);
   });
   it("Should slideNext to corret item", () => {
     carousel_element.goToSlide(1);
-    const prev = carousel_item.props.activeIndex;
     carousel_element.slideNext();
     const next = carousel_item.props.activeIndex;
     expect(next).toBe(2);
@@ -53,6 +49,14 @@ describe("React_Bootstrap_Carousel", () => {
     carousel2.setProps({ autoplay: false });
     carousel.setProps({ autoplay: false });
     expect(carousel.instance().isPaused).toBe(true);
+  });
+  it("Should auto play when visibilitychange", () => {
+    carousel.setProps({ hidden: true, pauseOnVisibility: true });
+    carousel_element.visibilitychange();
+    expect(carousel.instance().isPaused).toBe(true);
+    carousel.setProps({ hidden: false });
+    carousel_element.visibilitychange();
+    expect(carousel.instance().isPaused).toBe(false);
   });
   it("Should wrap work", () => {
     let activeIndex;
@@ -87,10 +91,10 @@ describe("React_Bootstrap_Carousel", () => {
     let activeIndex;
     carousel_element.goToSlide(1);
     carousel.setProps({ version: 3, controls: true, indicators: false });
-    carousel.find(".left .carousel-control").simulate("click");
+    carousel.find(".left.carousel-control").simulate("click");
     activeIndex = carousel_item.props.activeIndex;
     expect(activeIndex).toBe(0);
-    carousel.find(".right .carousel-control").simulate("click");
+    carousel.find(".right.carousel-control").simulate("click");
     activeIndex = carousel_item.props.activeIndex;
     expect(activeIndex).toBe(1);
   });
@@ -98,7 +102,7 @@ describe("React_Bootstrap_Carousel", () => {
     carousel.setProps({ indicators: true, animation: false });
     carousel
       .find(".carousel-indicators li")
-      .at(0)
+      .first()
       .simulate("click");
     let activeIndex = carousel_item.props.activeIndex;
     expect(activeIndex).toBe(0);

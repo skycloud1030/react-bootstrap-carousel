@@ -1,12 +1,12 @@
 import React from "react";
+import BaseComponent from "./base.js";
 import classNames from "classnames";
-import { React_Carousel_Indicators } from "./React_Carousel_Indicators.jsx";
-import { React_Carousel_Controls } from "./React_Carousel_Controls.jsx";
-import { React_Carousel_Item } from "./React_Carousel_Item.jsx";
-import shallowequal from "fbjs/lib/shallowEqual";
+import React_Carousel_Indicators from "./React_Carousel_Indicators.jsx";
+import React_Carousel_Controls from "./React_Carousel_Controls.jsx";
+import React_Carousel_Item from "./React_Carousel_Item.jsx";
 
 /* React_Bootstrap_Carousel.jsx*/
-export class React_Bootstrap_Carousel extends React.PureComponent {
+export default class React_Bootstrap_Carousel extends BaseComponent {
   static defaultProps = {
     indicators: true,
     controls: true,
@@ -18,6 +18,8 @@ export class React_Bootstrap_Carousel extends React.PureComponent {
     animation: true,
     className: "",
     version: 3,
+    pauseOnVisibility: false,
+    hidden: false,
     onSelect: () => {}
   };
   constructor(props) {
@@ -27,26 +29,31 @@ export class React_Bootstrap_Carousel extends React.PureComponent {
       className: classNames("carousel slide", this.props.className)
     };
   }
+  visibilitychange = () => {
+    (document.hidden || this.props.hidden) && this.props.pauseOnVisibility ? this._pause() : this._autoPlay();
+  };
   componentDidUpdate(prevProps, prevState) {
-    if (this.props.children.length > 0) {
+    this._checkChildrenLength();
+    if (this.props.autoplay !== prevProps.autoplay) {
       this._autoPlay();
     }
-    if (!shallowequal(prevProps.autoplay, this.props.autoplay)) {
-      this._autoPlay();
-    }
-    if (!shallowequal(prevState.activeIndex, this.state.activeIndex)) {
+    if (prevState.activeIndex !== this.state.activeIndex) {
       let { direction, activeIndex } = this.state;
       this.props.onSelect(activeIndex, direction);
     }
   }
-  componentDidMount() {
-    if (this.props.children.length > 0) {
-      this._autoPlay();
-    }
+  init() {
+    this._checkChildrenLength();
   }
-  componentWillUnmount() {
+  unmount() {
     this.timeout && clearTimeout(this.timeout);
   }
+  _checkChildrenLength = () => {
+    const { children } = this.props;
+    if (Array.isArray(children) && children.length > 0) {
+      this._autoPlay();
+    }
+  };
   _autoPlay = () => {
     this._pause();
     this.props.autoplay && this._play();
@@ -62,10 +69,10 @@ export class React_Bootstrap_Carousel extends React.PureComponent {
       }
       index = 0;
     }
-    this.setState({ activeIndex: index, direction: "next" });
+    this.safeSetState({ activeIndex: index, direction: "next" });
   };
   goToSlide = activeIndex => {
-    clearTimeout(this.timeout);
+    this.timeout && clearTimeout(this.timeout);
     this.setState({ activeIndex });
   };
   slidePrev = () => {
@@ -91,7 +98,7 @@ export class React_Bootstrap_Carousel extends React.PureComponent {
   };
   _pause = () => {
     this.isPaused = true;
-    clearTimeout(this.timeout);
+    this.timeout && clearTimeout(this.timeout);
   };
   _waitForNext() {
     this.timeout = setTimeout(this.slideNext, this.props.slideshowSpeed);
@@ -101,13 +108,12 @@ export class React_Bootstrap_Carousel extends React.PureComponent {
     this._waitForNext();
   };
   _indClick = (index, direction) => {
-    clearTimeout(this.timeout);
-    let { activeIndex } = this.state;
+    this.timeout && clearTimeout(this.timeout);
     this.setState({ activeIndex: index, direction });
     this.isPaused = false;
   };
   _controlsClick = call => {
-    clearTimeout(this.timeout);
+    this.timeout && clearTimeout(this.timeout);
     this.isPaused = false;
     if (call == "prev") {
       this.slidePrev();

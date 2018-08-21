@@ -2,7 +2,7 @@
 import React from "react";
 import classNames from "classnames";
 
-export class React_Carousel_Item extends React.PureComponent {
+export default class React_Carousel_Item extends React.PureComponent {
   static defaultProps = {
     data: [],
     activeIndex: 0,
@@ -17,28 +17,28 @@ export class React_Carousel_Item extends React.PureComponent {
     const css = version == 4 ? "carousel-item" : "item";
     const row = data.map((item, index) => {
       let position, direction;
-      if (animation === true) {
-        if (index > activeIndex) {
-          if (version == 4) {
-            position = "carousel-item-right";
-            direction = "carousel-item-next";
-          } else {
-            position = "right";
-            direction = "next";
-          }
-        } else if (index < activeIndex) {
-          if (version == 4) {
-            position = "carousel-item-left";
-            direction = "carousel-item-prev";
-          } else {
-            position = "left";
-            direction = "prev";
-          }
-        }
+
+      switch (true) {
+        case animation === true && index > activeIndex && version == 4:
+          position = "carousel-item-right";
+          direction = "carousel-item-next";
+          break;
+        case animation === true && index > activeIndex:
+          position = "right";
+          direction = "next";
+          break;
+        case animation === true && index < activeIndex && version == 4:
+          position = "carousel-item-left";
+          direction = "carousel-item-prev";
+          break;
+        case animation === true && index < activeIndex:
+          position = "left";
+          direction = "prev";
+          break;
       }
       let className = classNames(css, direction, position);
       className = index === activeIndex ? classNames(css, "active") : className;
-      
+
       return (
         <div key={index} className={className}>
           {item}
