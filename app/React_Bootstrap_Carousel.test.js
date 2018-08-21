@@ -49,9 +49,10 @@ describe("React_Bootstrap_Carousel", () => {
     carousel2.setProps({ autoplay: false });
     carousel.setProps({ autoplay: false });
     expect(carousel.instance().isPaused).toBe(true);
+    expect(carousel2.instance().isPaused).toBe(true);
   });
   it("Should auto play when visibilitychange", () => {
-    carousel.setProps({ hidden: true, pauseOnVisibility: true });
+    carousel.setProps({ hidden: true, pauseOnVisibility: true, autoplay: true });
     carousel_element.visibilitychange();
     expect(carousel.instance().isPaused).toBe(true);
     carousel.setProps({ hidden: false });
