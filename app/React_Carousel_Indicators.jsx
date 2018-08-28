@@ -20,17 +20,22 @@ export default class React_Carousel_Indicators extends React.PureComponent {
   };
   render() {
     const { data, activeIndex } = this.props;
-    const row = data.map((_item, index) => {
-      const className = index == activeIndex ? "active" : "";
-      return (
-        <li
-          key={index}
-          onClick={this._onClick.bind(this, index)}
-          className={className}
-          style={{ marginLeft: 10 }}
-        />
-      );
-    });
-    return <ol className={this.state.css}>{row}</ol>;
+      if (Array.isArray(data)) {
+        const row = data.map((_item, index) => {
+          const className = index == activeIndex ? "active" : "";
+          return (
+            <li
+              key={index}
+              onClick={this._onClick.bind(this, index)}
+              className={className}
+              style={{marginLeft: 10}}
+            />
+          );
+        });
+        return <ol className={this.state.css}>{row}</ol>;
+      }
+      else {
+        return null;
+      }
   }
 }
