@@ -10,6 +10,7 @@ function indClick(ind, _dir) {
 describe("React_Carousel_Indicators", () => {
   const indicators = mount(<React_Carousel_Indicators data={children} indClick={indClick} />);
   const indicators_empty = mount(<React_Carousel_Indicators data={children} />);
+  const indicators_notArray = mount(<React_Carousel_Indicators data={"test1"} />);
 
   it("Should change carousel", () => {
     expect(indicators.find(".carousel-indicators li").length).toBe(3);
@@ -29,5 +30,9 @@ describe("React_Carousel_Indicators", () => {
       .find(".carousel-indicators li")
       .at(1)
       .simulate("click");
+  });
+
+  it("Check data format", () => {
+    expect(indicators_notArray.find(".carousel-indicators li").length).toBe(0);
   });
 });

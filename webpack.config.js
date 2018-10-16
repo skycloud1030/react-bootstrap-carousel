@@ -28,7 +28,7 @@ var config = {
         loader: "babel-loader",
         query: {
           cacheDirectory: true,
-          presets: ["env", "stage-0", "react"]
+          presets: ["@babel/preset-env", "@babel/preset-react"]
         }
       }
     ]

@@ -13,6 +13,7 @@ describe("React_Bootstrap_Carousel", () => {
   );
   const carousel2 = mount(<RBCarousel defaultActiveIndex={1} />);
   const carousel_element = carousel.instance();
+  const carousel_notArray = mount(<RBCarousel>Test1</RBCarousel>);
   const carousel_item = carousel.find(RBCarouselItem).instance();
   it("Should have next and prev", () => {
     expect(typeof carousel_element.slideNext).toBe("function");
@@ -108,5 +109,8 @@ describe("React_Bootstrap_Carousel", () => {
     let activeIndex = carousel_item.props.activeIndex;
     expect(activeIndex).toBe(0);
     carousel.unmount();
+  });
+  it("Check data format", () => {
+    expect(carousel_notArray.find(".carousel-indicators li").length).toBe(0);
   });
 });
