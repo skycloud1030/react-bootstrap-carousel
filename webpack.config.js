@@ -1,7 +1,5 @@
-var path = require("path");
-var webpack = require("webpack");
-var node_modules_dir = __dirname + "/node_modules";
-var plugins = [];
+const path = require("path");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 var config = {
   entry: {
@@ -15,10 +13,10 @@ var config = {
     umdNamedDefine: true
   },
   externals: {
-    "react": "react",
+    react: "react",
     "react-dom": "react-dom"
   },
-  plugins: plugins,
+  plugins: [new CopyWebpackPlugin([{ from: "app/assert", to: "./" }])],
   resolve: { alias: {} },
   module: {
     rules: [

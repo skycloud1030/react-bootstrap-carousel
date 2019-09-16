@@ -1,41 +1,40 @@
 /* React_Carousel_Indicators.jsx */
 import React from "react";
+import { useState, useCallback } from "react";
 
-export default class React_Carousel_Indicators extends React.PureComponent {
-  static defaultProps = {
-    data: [],
-    activeIndex: 0,
-    indClick: () => {}
-  };
-  constructor(props) {
-    super(props);
-    this.state = {
-      css: "carousel-indicators"
-    };
+React_Carousel_Indicators.defaultProps = {
+  data: [],
+  activeIndex: 0,
+  indClick: () => {}
+};
+function React_Carousel_Indicators(props) {
+  const { activeIndex, data } = props;
+  const [state] = useState({ css: "carousel-indicators" });
+  const _onClick = useCallback(
+    index => {
+      const direction = activeIndex < index ? "next" : "prev";
+      props.indClick(index, direction);
+    },
+    [activeIndex]
+  );
+
+  if (!Array.isArray(data)) {
+    return null;
   }
-  _onClick = index => {
-    const { activeIndex } = this.props;
-    const direction = activeIndex < index ? "next" : "prev";
-    this.props.indClick(index, direction);
-  };
-  render() {
-    const { data, activeIndex } = this.props;
-      if (Array.isArray(data)) {
-        const row = data.map((_item, index) => {
-          const className = index == activeIndex ? "active" : "";
-          return (
-            <li
-              key={index}
-              onClick={this._onClick.bind(this, index)}
-              className={className}
-              style={{marginLeft: 10}}
-            />
-          );
-        });
-        return <ol className={this.state.css}>{row}</ol>;
-      }
-      else {
-        return null;
-      }
-  }
+
+  const _row = data.map((_item, index) => {
+    const className = index == activeIndex ? "active" : "";
+    return (
+      <li
+        key={index}
+        onClick={_onClick.bind(this, index)}
+        className={className}
+        style={{ marginLeft: 10 }}
+      />
+    );
+  });
+
+  return <ol className={state.css}>{_row}</ol>;
 }
+
+export default React.memo(React_Carousel_Indicators);
