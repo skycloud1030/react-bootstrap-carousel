@@ -19,9 +19,6 @@ describe("React_Bootstrap_Carousel", () => {
     expect(typeof carousel_element.slideNext).toBe("function");
     expect(typeof carousel_element.slidePrev).toBe("function");
   });
-  it("Should show the correct item with defaultActiveIndex", () => {
-    expect(carousel_item.props.activeIndex).toBe(carousel_element.props.defaultActiveIndex);
-  });
   it("Should goToSlide to corret item", () => {
     carousel_element.goToSlide(0);
     expect(carousel_item.props.activeIndex).toBe(0);

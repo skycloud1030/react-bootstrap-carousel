@@ -1,11 +1,41 @@
 import React from "react";
 import BaseComponent from "./base.js";
-import classNames from "classnames";
 import React_Carousel_Indicators from "./React_Carousel_Indicators.jsx";
 import React_Carousel_Controls from "./React_Carousel_Controls.jsx";
 import React_Carousel_Item from "./React_Carousel_Item.jsx";
 
 /* React_Bootstrap_Carousel.jsx*/
+
+const Render_Ind = React.memo(function Render_Ind(props) {
+  const { children, indicators, activeIndex } = props;
+  if (indicators) {
+    return (
+      <React_Carousel_Indicators
+        data={children}
+        activeIndex={activeIndex}
+        indClick={props._indClick}
+      />
+    );
+  }
+});
+
+const Render_Control = React.memo(function Render_Control(props) {
+  const { children, controls, leftIcon, rightIcon, version } = props;
+  if (controls) {
+    return (
+      <React_Carousel_Controls
+        dataLength={children.length}
+        leftIcon={leftIcon}
+        rightIcon={rightIcon}
+        prev={props.slidePrev}
+        next={props.slideNext}
+        controlsClick={props._controlsClick}
+        version={version}
+      />
+    );
+  }
+});
+
 export default class React_Bootstrap_Carousel extends BaseComponent {
   static defaultProps = {
     indicators: true,
@@ -26,11 +56,13 @@ export default class React_Bootstrap_Carousel extends BaseComponent {
     super(props);
     this.state = {
       activeIndex: this.props.defaultActiveIndex,
-      className: classNames("carousel slide", this.props.className)
+      className: `carousel slide ${this.props.className}`
     };
   }
   visibilitychange = () => {
-    (document.hidden || this.props.hidden) && this.props.pauseOnVisibility ? this._pause() : this._autoPlay();
+    (document.hidden || this.props.hidden) && this.props.pauseOnVisibility
+      ? this._pause()
+      : this._autoPlay();
   };
   componentDidUpdate(prevProps, prevState) {
     this._checkChildrenLength();
@@ -121,49 +153,36 @@ export default class React_Bootstrap_Carousel extends BaseComponent {
       this.slideNext();
     }
   };
-  render_ind = () => {
-    let { children, indicators } = this.props;
-    let { activeIndex } = this.state;
-    if (indicators) {
-      return (
-        <React_Carousel_Indicators data={children} activeIndex={activeIndex} indClick={this._indClick} />
-      );
-    }
-  };
-  render_control = () => {
-    let { children, controls, leftIcon, rightIcon, version } = this.props;
-    if (controls) {
-      return (
-        <React_Carousel_Controls
-          dataLength={children.length}
-          leftIcon={leftIcon}
-          rightIcon={rightIcon}
-          prev={this.slidePrev}
-          next={this.slideNext}
-          controlsClick={this._controlsClick}
-          version={version}
-        />
-      );
-    }
-  };
   render() {
     const { children, version } = this.props;
     const { activeIndex, className } = this.state;
-    const { animation } = this.props;
+    const { animation, indicators } = this.props;
+    const { leftIcon, rightIcon, controls } = this.props;
     return (
       <div
-        className={classNames(className)}
+        className={className}
         onMouseOver={this._handleMouseOver}
         onMouseOut={this._handleMouseOut}
       >
-        {this.render_ind()}
-        <React_Carousel_Item
-          animation={animation}
-          data={children}
-          activeIndex={activeIndex}
-          version={version}
-        />
-        {this.render_control()}
+        <Render_Ind {...{ activeIndex, indicators, _indClick: this._indClick }}>
+          {children}
+        </Render_Ind>
+        <React_Carousel_Item {...{ animation, activeIndex, version }}>
+          {children}
+        </React_Carousel_Item>
+        <Render_Control
+          {...{
+            controls,
+            leftIcon,
+            rightIcon,
+            version,
+            slidePrev: this.slidePrev,
+            slideNext: this.slideNext,
+            _controlsClick: this._controlsClick
+          }}
+        >
+          {children}
+        </Render_Control>
       </div>
     );
   }
