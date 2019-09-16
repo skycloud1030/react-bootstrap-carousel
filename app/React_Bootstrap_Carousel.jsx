@@ -56,7 +56,7 @@ export default class React_Bootstrap_Carousel extends BaseComponent {
     super(props);
     this.state = {
       activeIndex: this.props.defaultActiveIndex,
-      className: `"carousel slide" ${this.props.className}`
+      className: `carousel slide ${this.props.className}`
     };
   }
   visibilitychange = () => {
