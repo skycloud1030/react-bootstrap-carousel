@@ -9,6 +9,7 @@ React_Carousel_Controls.defaultProps = {
 };
 function React_Carousel_Controls(props) {
   const { dataLength, version } = props;
+  const { rightIcon, leftIcon } = props;
   const [bootstrap] = useState({
     ver_4: {
       leftCss: "left carousel-control-prev",
@@ -25,34 +26,35 @@ function React_Carousel_Controls(props) {
   });
   const _onclick = useCallback(call => props.controlsClick(call), []);
   const _renderControl = useMemo(() => {
-    let { rightIcon, leftIcon } = props;
+    let icon_left = leftIcon;
+    let icon_right = rightIcon;
     let leftCss = "";
     let rightCss = "";
     switch (version) {
       case 4:
         leftCss = bootstrap.ver_4.leftCss;
         rightCss = bootstrap.ver_4.rightCss;
-        leftIcon = leftIcon || bootstrap.ver_4.leftIcon;
-        rightIcon = rightIcon || bootstrap.ver_4.rightIcon;
+        icon_left = leftIcon || bootstrap.ver_4.leftIcon;
+        icon_right = rightIcon || bootstrap.ver_4.rightIcon;
         break;
       default:
         leftCss = bootstrap.ver_3.leftCss;
         rightCss = bootstrap.ver_3.rightCss;
-        leftIcon = leftIcon || bootstrap.ver_3.leftIcon;
-        rightIcon = rightIcon || bootstrap.ver_3.rightIcon;
+        icon_left = leftIcon || bootstrap.ver_3.leftIcon;
+        icon_right = rightIcon || bootstrap.ver_3.rightIcon;
         break;
     }
     return (
       <React.Fragment>
         <a className={leftCss} onClick={_onclick.bind(this, "prev")}>
-          <React_FlexSlider_Icon_Left icon={leftIcon} />
+          <React_FlexSlider_Icon_Left icon={icon_left} />
         </a>
         <a className={rightCss} onClick={_onclick.bind(this, "next")}>
-          <React_FlexSlider_Icon_Right icon={rightIcon} />
+          <React_FlexSlider_Icon_Right icon={icon_right} />
         </a>
       </React.Fragment>
     );
-  }, [version]);
+  }, [version, leftIcon, rightIcon]);
 
   if (dataLength < 2) {
     return null;

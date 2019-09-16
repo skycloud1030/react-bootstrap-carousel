@@ -20,7 +20,7 @@ const Render_Ind = React.memo(function Render_Ind(props) {
 });
 
 const Render_Control = React.memo(function Render_Control(props) {
-  let { children, controls, leftIcon, rightIcon, version } = props;
+  const { children, controls, leftIcon, rightIcon, version } = props;
   if (controls) {
     return (
       <React_Carousel_Controls
