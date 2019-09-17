@@ -1,10 +1,18 @@
 /* react-boostrap-carousel.css*/
 @charset "UTF-8";
 
+.carousel .carousel-inner .item,
+.carousel .carousel-inner .carousel-item {
+  overflow: hidden;
+}
+
 .carousel-control.right,
 .carousel-control-next {
-  /*opacity: 0;*/
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%);
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
   background-image: -webkit-gradient(
     linear,
     left top,
@@ -16,7 +24,11 @@
 
 .carousel-control.left,
 .carousel-control-prev {
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 100%);
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
   background-image: -webkit-gradient(
     linear,
     left top,
@@ -28,7 +40,11 @@
 
 .carousel-control.right:hover,
 .carousel-control-next:hover {
-  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);
+  background-image: -webkit-linear-gradient(
+    left,
+    rgba(0, 0, 0, 0.0001) 0%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
   background-image: -webkit-gradient(
     linear,
     left top,
@@ -40,7 +56,11 @@
 
 .carousel-control.left:hover,
 .carousel-control-prev:hover {
-  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%);
+  background-image: -webkit-linear-gradient(
+    left,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.0001) 100%
+  );
   background-image: -webkit-gradient(
     linear,
     left top,
@@ -107,7 +127,6 @@
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
-  z-index: 15;
 }
 
 .leftControl > i,
@@ -139,10 +158,12 @@
 @font-face {
   font-family: "react-bootstrap-carousel";
   src: url("../fonts/react-bootstrap-carousel.eot");
-  src: url("../fonts/react-bootstrap-carousel.eot?#iefix") format("embedded-opentype"),
+  src: url("../fonts/react-bootstrap-carousel.eot?#iefix")
+      format("embedded-opentype"),
     url("../fonts/react-bootstrap-carousel.woff") format("woff"),
     url("../fonts/react-bootstrap-carousel.ttf") format("truetype"),
-    url("../fonts/react-bootstrap-carousel.svg#react-bootstrap-carousel") format("svg");
+    url("../fonts/react-bootstrap-carousel.svg#react-bootstrap-carousel")
+      format("svg");
   font-weight: normal;
   font-style: normal;
 }

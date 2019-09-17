@@ -1,6 +1,6 @@
 {
   "name": "react-bootstrap-carousel",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "React port of bootstrap carousel",
   "license": "MIT",
   "main": "dist/react-bootstrap-carousel.js",

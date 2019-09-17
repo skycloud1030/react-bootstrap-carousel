@@ -56,7 +56,7 @@ export default class React_Bootstrap_Carousel extends BaseComponent {
     super(props);
     this.state = {
       activeIndex: this.props.defaultActiveIndex,
-      className: `carousel slide ${this.props.className}`
+      className: `carousel ${this.props.className}`
     };
   }
   visibilitychange = () => {
@@ -105,7 +105,7 @@ export default class React_Bootstrap_Carousel extends BaseComponent {
   };
   goToSlide = activeIndex => {
     this.timeout && clearTimeout(this.timeout);
-    this.setState({ activeIndex });
+    this.safeSetState({ activeIndex });
   };
   slidePrev = () => {
     let { activeIndex } = this.state;
@@ -118,7 +118,7 @@ export default class React_Bootstrap_Carousel extends BaseComponent {
       }
       index = count - 1;
     }
-    this.setState({ activeIndex: index, direction: "prev" });
+    this.safeSetState({ activeIndex: index, direction: "prev" });
   };
   _handleMouseOver = () => {
     this._pause();
