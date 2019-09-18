@@ -1,13 +1,14 @@
 import React, { useState, useCallback, useRef } from "react";
 import ReactDOM from "react-dom";
-import "react-bootstrap-carousel/dist/react-bootstrap-carousel.css";
 import RBCarousel from "react-bootstrap-carousel";
-import { Row, Col, Button, ButtonGroup } from "./boostrap-compoent.jsx";
+import { Row, Col, Button, ButtonGroup } from "./bootstrap-component.jsx";
+import "react-bootstrap-carousel/dist/react-bootstrap-carousel.css";
+
 const styles = { height: 400, width: "100%" };
 const icon_glass = <span className="glyphicon glyphicon-glass" />;
 const icon_music = <span className="glyphicon glyphicon-music" />;
 
-function Demo() {
+function DemoV3() {
   const [autoplay, setAutoplay] = useState(true);
   const [icon, setIcon] = useState({});
   const slider_ref = useRef(null);
@@ -19,6 +20,7 @@ function Demo() {
     console.log(`active=${active} && direction=${direction}`);
   }, []);
   const _changeIcon = useCallback(() => {
+    // Icon Switch
     setIcon(({ leftIcon, rightIcon }) => {
       leftIcon = leftIcon ? undefined : icon_glass;
       rightIcon = rightIcon ? undefined : icon_music;
@@ -154,4 +156,4 @@ function Demo() {
   );
 }
 
-ReactDOM.render(<Demo />, document.getElementById("Demo"));
+ReactDOM.render(<DemoV3 />, document.getElementById("Demo"));

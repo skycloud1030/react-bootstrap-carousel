@@ -27,6 +27,6 @@ const ButtonGroup = React.memo(function ButtonGroup(props) {
 });
 
 /**
- *  Boostrap Component
+ *  Bootstrap Component
  */
 export { Row, Button, Col, ButtonGroup };
