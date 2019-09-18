@@ -27,7 +27,7 @@ import "react-bootstrap-carousel/dist/react-bootstrap-carousel.css";
 - [preview](https://skycloud1030.github.io/react-bootstrap-carousel/example/demoV3.html)
 - [code](https://github.com/skycloud1030/react-bootstrap-carousel/blob/gh-pages/app/demoV3.jsx)
 
-## Bootstrap@4.1 demo
+## Bootstrap@4.3 demo
 
 - [preview](https://skycloud1030.github.io/react-bootstrap-carousel/example/demoV4.html)
 - [code](https://github.com/skycloud1030/react-bootstrap-carousel/blob/gh-pages/app/demoV4.jsx)
