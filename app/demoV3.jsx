@@ -24,7 +24,7 @@ function DemoV3() {
     setIcon(({ leftIcon, rightIcon }) => {
       leftIcon = leftIcon ? undefined : icon_glass;
       rightIcon = rightIcon ? undefined : icon_music;
-      return { leftIcon, rightIcon };
+      return { leftIcon: leftIcon, rightIcon: rightIcon };
     });
   }, []);
   const _slidePrev = useCallback(() => slider_ref.current.slidePrev(), []);
