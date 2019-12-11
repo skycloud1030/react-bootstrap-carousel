@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import RBCarousel from "react-bootstrap-carousel";
 import { Row, Col, Button, ButtonGroup } from "./bootstrap-component.jsx";
@@ -8,152 +8,162 @@ const styles = { height: 400, width: "100%" };
 const icon_glass = <span className="glyphicon glyphicon-glass" />;
 const icon_music = <span className="glyphicon glyphicon-music" />;
 
-function DemoV3() {
-  const [autoplay, setAutoplay] = useState(true);
-  const [icon, setIcon] = useState({});
-  const slider_ref = useRef(null);
-  const _autoplay = useCallback(() => setAutoplay(autoplay => !autoplay), []);
-  const _visiableOnSelect = useCallback(active => {
-    console.log(`visiable onSelect active=${active}`);
-  }, []);
-  const _onSelect = useCallback((active, direction) => {
+class DemoV3 extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      autoplay: true
+    };
+  }
+  onSelect = (active, direction) => {
     console.log(`active=${active} && direction=${direction}`);
-  }, []);
-  const _changeIcon = useCallback(() => {
-    // Icon Switch
-    setIcon(({ leftIcon, rightIcon }) => {
-      leftIcon = leftIcon ? undefined : icon_glass;
-      rightIcon = rightIcon ? undefined : icon_music;
-      return { leftIcon: leftIcon, rightIcon: rightIcon };
-    });
-  }, []);
-  const _slidePrev = useCallback(() => slider_ref.current.slidePrev(), []);
-  const _slideNext = useCallback(() => slider_ref.current.slideNext(), []);
-  const _goToSlide = useCallback(() => slider_ref.current.goToSlide(1), []);
-
-  return (
-    <div className="container-fluid" style={{ paddingBottom: 20 }}>
-      <Row>
-        <Col span={12} style={{ paddingTop: "20px" }}>
-          <ButtonGroup>
-            <Button bsStyle="primary" onClick={_slidePrev}>
-              Slider prev
-            </Button>
-            <Button bsStyle="primary" onClick={_slideNext}>
-              Slider next
-            </Button>
-            <Button bsStyle="primary" onClick={_goToSlide}>
-              Go to slide 2
-            </Button>
-          </ButtonGroup>
-        </Col>
-        <Col span={12} style={{ paddingTop: "20px" }}>
-          <ButtonGroup>
-            <Button bsStyle="primary" onClick={_changeIcon}>
-              Change Icon
-            </Button>
-            <Button bsStyle="primary" onClick={_autoplay}>
-              {autoplay ? "Stop Autoplay" : "Start Autoplay"}
-            </Button>
-          </ButtonGroup>
-        </Col>
-        <Col span={12} style={{ marginTop: 20 }}>
-          <RBCarousel
-            animation={true}
-            autoplay={autoplay}
-            slideshowSpeed={2000}
-            defaultActiveIndex={0}
-            leftIcon={icon.leftIcon}
-            rightIcon={icon.rightIcon}
-            onSelect={_onSelect}
-            ref={slider_ref}
-          >
-            <div style={{ height: 400 }}>
-              <img
-                style={{ width: "100%", height: "100%" }}
-                src="https://www.w3schools.com/bootstrap/ny.jpg"
-              />
-              <div className="carousel-caption">Image</div>
-            </div>
-            <div style={{ ...styles, backgroundColor: "aqua" }}>
-              <video
-                className="carousel-center"
-                controls
-                style={{ width: "75%" }}
-                height="250"
-              >
-                <source
-                  src="https://www.w3schools.com/html/mov_bbb.mp4"
-                  type="video/mp4"
+  };
+  visiableOnSelect = active => {
+    console.log(`visiable onSelect active=${active}`);
+  };
+  slideNext = () => {
+    this.slider.slideNext();
+  };
+  slidePrev = () => {
+    this.slider.slidePrev();
+  };
+  goToSlide = () => {
+    this.slider.goToSlide(1);
+  };
+  autoplay = () => {
+    this.setState({ autoplay: !this.state.autoplay });
+  };
+  _changeIcon = () => {
+    let { leftIcon, rightIcon } = this.state;
+    leftIcon = leftIcon ? undefined : icon_glass;
+    rightIcon = rightIcon ? undefined : icon_music;
+    this.setState({ leftIcon, rightIcon });
+  };
+  render() {
+    return (
+      <div className="container-fluid" style={{ paddingBottom: 20 }}>
+        <Row>
+          <Col span={12} style={{ paddingTop: "20px" }}>
+            <ButtonGroup>
+              <Button bsStyle="primary" onClick={this._slidePrev}>
+                Slider prev
+              </Button>
+              <Button bsStyle="primary" onClick={this._slideNext}>
+                Slider next
+              </Button>
+              <Button bsStyle="primary" onClick={this._goToSlide}>
+                Go to slide 2
+              </Button>
+            </ButtonGroup>
+          </Col>
+          <Col span={12} style={{ paddingTop: "20px" }}>
+            <ButtonGroup>
+              <Button bsStyle="primary" onClick={this._changeIcon}>
+                Change Icon
+              </Button>
+              <Button bsStyle="primary" onClick={this._autoplay}>
+                {this.state ? "Stop Autoplay" : "Start Autoplay"}
+              </Button>
+            </ButtonGroup>
+          </Col>
+          <Col span={12} style={{ marginTop: 20 }}>
+            <RBCarousel
+              animation={true}
+              autoplay={this.state.autoplay}
+              slideshowSpeed={2000}
+              defaultActiveIndex={0}
+              leftIcon={this.state.leftIcon}
+              rightIcon={this.state.rightIcon}
+              onSelect={this.onSelect}
+              ref={r => (this.slider = r)}
+            >
+              <div style={{ height: 400 }}>
+                <img
+                  style={{ width: "100%", height: "100%" }}
+                  src="https://www.w3schools.com/bootstrap/ny.jpg"
                 />
-              </video>
-              <div className="carousel-caption">Video</div>
-            </div>
-            <div style={{ ...styles, backgroundColor: "lightpink" }}>
-              <div className="carousel-center">center Text</div>
-              <div className="carousel-caption">Text</div>
-            </div>
-            <div style={{ ...styles, backgroundColor: "lightblue" }}>
-              <span>text</span>
-              <div className="carousel-caption">Text</div>
-            </div>
-            <div style={{ ...styles, backgroundColor: "lightblue" }}>
-              <div className="carousel-center">
-                <iframe
-                  style={{ width: 500 }}
+                <div className="carousel-caption">Image</div>
+              </div>
+              <div style={{ ...styles, backgroundColor: "aqua" }}>
+                <video
+                  className="carousel-center"
+                  controls
+                  style={{ width: "75%" }}
                   height="250"
-                  src="https://www.youtube.com/embed/MhkGQAoc7bc?showinfo=0"
-                  frameBorder="0"
-                  allowFullScreen
-                />
+                >
+                  <source
+                    src="https://www.w3schools.com/html/mov_bbb.mp4"
+                    type="video/mp4"
+                  />
+                </video>
+                <div className="carousel-caption">Video</div>
               </div>
-              <div className="carousel-caption">Youtube</div>
-            </div>
-          </RBCarousel>
-        </Col>
-        <Col span={12} style={{ marginTop: 20 }}>
-          <RBCarousel
-            autoplay={autoplay}
-            pauseOnVisibility={true}
-            onSelect={_visiableOnSelect}
-            slideshowSpeed={2000}
-          >
-            <div style={{ ...styles, backgroundColor: "lightblue" }}>
-              <div className="carousel-center">
-                <div>This carsouel won't change if invisiable</div>
-                <div>pauseOnVisibility = true</div>
+              <div style={{ ...styles, backgroundColor: "lightpink" }}>
+                <div className="carousel-center">center Text</div>
+                <div className="carousel-caption">Text</div>
               </div>
-              <div className="carousel-center"> </div>
-              <div className="carousel-caption">Text</div>
-            </div>
-            <div style={{ ...styles, backgroundColor: "lightblue" }}>
-              <div className="carousel-center">
-                <div>This carsouel won't change if invisiable</div>
-                <div>pauseOnVisibility = true</div>
+              <div style={{ ...styles, backgroundColor: "lightblue" }}>
+                <span>text</span>
+                <div className="carousel-caption">Text</div>
               </div>
-              <div className="carousel-caption">Text</div>
-            </div>
-          </RBCarousel>
-        </Col>
-        <Col span={12} style={{ marginTop: 20 }}>
-          <RBCarousel className="carousel-fade">
-            <div style={{ ...styles, backgroundColor: "darkcyan" }}>
-              <div className="carousel-center">
-                This carsouel transition is fade
+              <div style={{ ...styles, backgroundColor: "lightblue" }}>
+                <div className="carousel-center">
+                  <iframe
+                    style={{ width: 500 }}
+                    height="250"
+                    src="https://www.youtube.com/embed/MhkGQAoc7bc?showinfo=0"
+                    frameBorder="0"
+                    allowFullScreen
+                  />
+                </div>
+                <div className="carousel-caption">Youtube</div>
               </div>
-              <div className="carousel-caption">Text</div>
-            </div>
-            <div style={{ ...styles, backgroundColor: "yellowgreen" }}>
-              <span className="carousel-center">
-                This carsouel transition is fade
-              </span>
-              <div className="carousel-caption">Text</div>
-            </div>
-          </RBCarousel>
-        </Col>
-      </Row>
-    </div>
-  );
+            </RBCarousel>
+          </Col>
+          <Col span={12} style={{ marginTop: 20 }}>
+            <RBCarousel
+              autoplay={this.state.autoplay}
+              pauseOnVisibility={true}
+              onSelect={this.visiableOnSelect}
+              slideshowSpeed={2000}
+            >
+              <div style={{ ...styles, backgroundColor: "lightblue" }}>
+                <div className="carousel-center">
+                  <div>This carsouel won't change if invisiable</div>
+                  <div>pauseOnVisibility = true</div>
+                </div>
+                <div className="carousel-center"> </div>
+                <div className="carousel-caption">Text</div>
+              </div>
+              <div style={{ ...styles, backgroundColor: "lightblue" }}>
+                <div className="carousel-center">
+                  <div>This carsouel won't change if invisiable</div>
+                  <div>pauseOnVisibility = true</div>
+                </div>
+                <div className="carousel-caption">Text</div>
+              </div>
+            </RBCarousel>
+          </Col>
+          <Col span={12} style={{ marginTop: 20 }}>
+            <RBCarousel className="carousel-fade">
+              <div style={{ ...styles, backgroundColor: "darkcyan" }}>
+                <div className="carousel-center">
+                  This carsouel transition is fade
+                </div>
+                <div className="carousel-caption">Text</div>
+              </div>
+              <div style={{ ...styles, backgroundColor: "yellowgreen" }}>
+                <span className="carousel-center">
+                  This carsouel transition is fade
+                </span>
+                <div className="carousel-caption">Text</div>
+              </div>
+            </RBCarousel>
+          </Col>
+        </Row>
+      </div>
+    );
+  }
 }
 
 ReactDOM.render(<DemoV3 />, document.getElementById("Demo"));

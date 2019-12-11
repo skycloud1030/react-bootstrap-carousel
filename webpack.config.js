@@ -18,8 +18,7 @@ var config = {
         exclude: /(node_modules|bower_components)/,
         loader: "babel-loader",
         query: {
-          cacheDirectory: true,
-          presets: [["@babel/preset-env"], "@babel/react"]
+          cacheDirectory: true
         }
       },
       {
