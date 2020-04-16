@@ -1,6 +1,6 @@
 {
   "name": "react-bootstrap-carousel",
-  "version": "4.0.4",
+  "version": "4.0.5",
   "description": "React port of bootstrap carousel",
   "license": "MIT",
   "main": "dist/react-bootstrap-carousel.js",
@@ -9,7 +9,7 @@
     "bootstrap",
     "carousel"
   ],
-  "author": "skycloud1030",
+  "author": "CT Hung",
   "repository": {
     "type": "git",
     "url": "https://github.com/skycloud1030/react-bootstrap-carousel"
