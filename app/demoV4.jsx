@@ -11,26 +11,27 @@ const icon_music = <span className="fa fa-music" />;
 class DemoV4 extends React.PureComponent {
   constructor(props) {
     super(props);
+    this.slider = React.createRef();
     this.state = {
-      autoplay: true
+      autoplay: true,
     };
   }
-  onSelect = (active, direction) => {
+  _onSelect = (active, direction) => {
     console.log(`active=${active} && direction=${direction}`);
   };
-  visiableOnSelect = active => {
+  _visiableOnSelect = (active) => {
     console.log(`visiable onSelect active=${active}`);
   };
-  slideNext = () => {
-    this.slider.slideNext();
+  _slideNext = () => {
+    this.slider.current.slideNext();
   };
-  slidePrev = () => {
-    this.slider.slidePrev();
+  _slidePrev = () => {
+    this.slider.current.slidePrev();
   };
-  goToSlide = () => {
-    this.slider.goToSlide(1);
+  _goToSlide = () => {
+    this.slider.current.goToSlide(1);
   };
-  autoplay = () => {
+  _autoplay = () => {
     this.setState({ autoplay: !this.state.autoplay });
   };
   _changeIcon = () => {
@@ -75,7 +76,7 @@ class DemoV4 extends React.PureComponent {
               leftIcon={this.state.leftIcon}
               rightIcon={this.state.rightIcon}
               onSelect={this._onSelect}
-              ref={r => (this.slider = r)}
+              ref={this.slider}
               version={4}
             >
               <div style={{ height: 400 }}>
