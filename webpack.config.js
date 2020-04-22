@@ -3,18 +3,19 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 var config = {
   entry: {
-    "react-bootstrap-carousel": path.resolve(__dirname, "index.js")
+    "react-bootstrap-carousel": path.resolve(__dirname, "index.js"),
   },
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].js",
     library: "ReactBootstrap_Carousel",
     libraryTarget: "umd",
-    umdNamedDefine: true
+    umdNamedDefine: true,
+    globalObject: `(typeof self !== 'undefined' ? self : this)`,
   },
   externals: {
     react: "react",
-    "react-dom": "react-dom"
+    "react-dom": "react-dom",
   },
   plugins: [new CopyWebpackPlugin([{ from: "app/assert", to: "./" }])],
   resolve: { alias: {} },
@@ -26,10 +27,10 @@ var config = {
         loader: "babel-loader",
         query: {
           cacheDirectory: true,
-          presets: ["@babel/preset-env", "@babel/preset-react"]
-        }
-      }
-    ]
-  }
+          presets: ["@babel/preset-env", "@babel/preset-react"],
+        },
+      },
+    ],
+  },
 };
 module.exports = config;
