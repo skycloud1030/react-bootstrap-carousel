@@ -63,7 +63,7 @@ class DemoV3 extends React.PureComponent {
                 Change Icon
               </Button>
               <Button bsStyle="primary" onClick={this._autoplay}>
-                {this.state ? "Stop Autoplay" : "Start Autoplay"}
+                {this.state.autoplay ? "Stop Autoplay" : "Start Autoplay"}
               </Button>
             </ButtonGroup>
           </Col>
