@@ -11,26 +11,27 @@ const icon_music = <span className="glyphicon glyphicon-music" />;
 class DemoV3 extends React.PureComponent {
   constructor(props) {
     super(props);
+    this.slider = React.createRef();
     this.state = {
-      autoplay: true
+      autoplay: true,
     };
   }
-  onSelect = (active, direction) => {
+  _onSelect = (active, direction) => {
     console.log(`active=${active} && direction=${direction}`);
   };
-  visiableOnSelect = active => {
+  _visiableOnSelect = (active) => {
     console.log(`visiable onSelect active=${active}`);
   };
-  slideNext = () => {
-    this.slider.slideNext();
+  _slideNext = () => {
+    this.slider.current.slideNext();
   };
-  slidePrev = () => {
-    this.slider.slidePrev();
+  _slidePrev = () => {
+    this.slider.current.slidePrev();
   };
-  goToSlide = () => {
-    this.slider.goToSlide(1);
+  _goToSlide = () => {
+    this.slider.current.goToSlide(1);
   };
-  autoplay = () => {
+  _autoplay = () => {
     this.setState({ autoplay: !this.state.autoplay });
   };
   _changeIcon = () => {
@@ -62,7 +63,7 @@ class DemoV3 extends React.PureComponent {
                 Change Icon
               </Button>
               <Button bsStyle="primary" onClick={this._autoplay}>
-                {this.state ? "Stop Autoplay" : "Start Autoplay"}
+                {this.state.autoplay ? "Stop Autoplay" : "Start Autoplay"}
               </Button>
             </ButtonGroup>
           </Col>
@@ -74,8 +75,8 @@ class DemoV3 extends React.PureComponent {
               defaultActiveIndex={0}
               leftIcon={this.state.leftIcon}
               rightIcon={this.state.rightIcon}
-              onSelect={this.onSelect}
-              ref={r => (this.slider = r)}
+              onSelect={this._onSelect}
+              ref={this.slider}
             >
               <div style={{ height: 400 }}>
                 <img
@@ -124,7 +125,7 @@ class DemoV3 extends React.PureComponent {
             <RBCarousel
               autoplay={this.state.autoplay}
               pauseOnVisibility={true}
-              onSelect={this.visiableOnSelect}
+              onSelect={this._visiableOnSelect}
               slideshowSpeed={2000}
             >
               <div style={{ ...styles, backgroundColor: "lightblue" }}>
