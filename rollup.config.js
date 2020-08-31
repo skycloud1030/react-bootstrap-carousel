@@ -1,5 +1,4 @@
 import babel from "rollup-plugin-babel";
-// import { uglify } from "rollup-plugin-uglify";
 import { terser } from "rollup-plugin-terser";
 import copy from "rollup-plugin-copy";
 import filesize from "rollup-plugin-filesize";

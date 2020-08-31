@@ -17,7 +17,7 @@ var config = {
     react: "react",
     "react-dom": "react-dom",
   },
-  plugins: [new CopyWebpackPlugin([{ from: "app/assert", to: "./" }])],
+  plugins: [new CopyWebpackPlugin({ patterns: [{ from: "app/assert", to: "./" }] })],
   resolve: { alias: {} },
   module: {
     rules: [
@@ -27,7 +27,6 @@ var config = {
         loader: "babel-loader",
         query: {
           cacheDirectory: true,
-          presets: ["@babel/preset-env", "@babel/preset-react"],
         },
       },
     ],
