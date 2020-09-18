@@ -50,13 +50,13 @@ export default class React_Bootstrap_Carousel extends BaseComponent {
     version: 3,
     pauseOnVisibility: false,
     hidden: false,
-    onSelect: () => {}
+    onSelect: () => {},
   };
   constructor(props) {
     super(props);
     this.state = {
       activeIndex: this.props.defaultActiveIndex,
-      className: `carousel ${this.props.className}`
+      className: `carousel ${this.props.className}`,
     };
   }
   visibilitychange = () => {
@@ -103,7 +103,7 @@ export default class React_Bootstrap_Carousel extends BaseComponent {
     }
     this.safeSetState({ activeIndex: index, direction: "next" });
   };
-  goToSlide = activeIndex => {
+  goToSlide = (activeIndex) => {
     this.timeout && clearTimeout(this.timeout);
     this.safeSetState({ activeIndex });
   };
@@ -144,7 +144,7 @@ export default class React_Bootstrap_Carousel extends BaseComponent {
     this.setState({ activeIndex: index, direction });
     this.isPaused = false;
   };
-  _controlsClick = call => {
+  _controlsClick = (call) => {
     this.timeout && clearTimeout(this.timeout);
     this.isPaused = false;
     if (call == "prev") {
@@ -158,6 +158,7 @@ export default class React_Bootstrap_Carousel extends BaseComponent {
     const { activeIndex, className } = this.state;
     const { animation, indicators } = this.props;
     const { leftIcon, rightIcon, controls } = this.props;
+
     return (
       <div
         className={className}
@@ -178,7 +179,7 @@ export default class React_Bootstrap_Carousel extends BaseComponent {
             version,
             slidePrev: this.slidePrev,
             slideNext: this.slideNext,
-            _controlsClick: this._controlsClick
+            _controlsClick: this._controlsClick,
           }}
         >
           {children}

@@ -5,13 +5,13 @@ import { useState, useCallback } from "react";
 React_Carousel_Indicators.defaultProps = {
   data: [],
   activeIndex: 0,
-  indClick: () => {}
+  indClick: () => {},
 };
 function React_Carousel_Indicators(props) {
   const { activeIndex, data } = props;
   const [state] = useState({ css: "carousel-indicators" });
   const _onClick = useCallback(
-    index => {
+    (index) => {
       const direction = activeIndex < index ? "next" : "prev";
       props.indClick(index, direction);
     },
